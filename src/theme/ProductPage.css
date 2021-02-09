@@ -1,0 +1,17 @@
+#paintingDetails{
+    text-align: left;
+
+}
+h6{
+    font-weight:700;
+    
+}
+#sold{
+    font-weight: bolder;
+    color: red;
+    
+}
+[variant="secondary"]{
+    margin-top: 10px;
+    margin-left: 10px;
+}
