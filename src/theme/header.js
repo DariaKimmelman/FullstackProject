@@ -10,7 +10,7 @@ import logo from './logo.png';
 
 
 function Header(){
-    return <Navbar bg="light" expand="lg">
+    return <Navbar bg="light" expand="lg" sticky="top">
     <Navbar.Brand href="#home"><img src= {logo}  alt="logo" height="60" width="140"/></Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">

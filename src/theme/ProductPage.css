@@ -2,8 +2,8 @@
     text-align: left;
 
 }
-h6{
-    font-weight:700;
+#price{
+    font-weight: 900;
     
 }
 #sold{
@@ -14,4 +14,10 @@ h6{
 [variant="secondary"]{
     margin-top: 10px;
     margin-left: 10px;
+}
+#ppage{
+    background-size: cover;
+}
+img{
+    width: 90%;
 }

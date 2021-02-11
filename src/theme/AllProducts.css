@@ -1,0 +1,10 @@
+select{
+    text-align:  right;
+    background-color: #ebe9e5;
+    display: inline-block;
+    border: none;
+    padding: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}

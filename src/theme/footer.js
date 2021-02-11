@@ -5,7 +5,7 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import { faInstagramSquare } from '@fortawesome/free-brands-svg-icons';
 function Footer(){
-    return <Navbar bg="dark" expand="lg" variant = 'dark' fixed='bottom'>
+    return <Navbar bg="dark" expand="lg" variant = 'dark' sticky="bottom">
     
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
