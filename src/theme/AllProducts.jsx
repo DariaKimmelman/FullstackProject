@@ -113,7 +113,7 @@ function AllProducts() {
     
     
     
-    return <div>
+    return <div > 
     
        <select name="" id="" value={selectValue} onChange={(e) =>updatePaintings(e.target.value)}>
             <option value="1"  >Price(Low)</option> 
