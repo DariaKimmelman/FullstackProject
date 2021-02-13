@@ -17,8 +17,8 @@ function Header(){
       <Nav className="mr-auto">
         <Nav.Link href="#home">About</Nav.Link>
         <Nav.Link href="#link">Blog</Nav.Link>
-        <NavDropdown title="Catalog" id="basic-nav-dropdown"  >
-        <Container >
+        <NavDropdown title="Catalog" id="basic-nav-dropdown" >
+        <Container style={{width: '500px'}}>
           <Row >
            
             <Col>

@@ -3,5 +3,25 @@
     background-color: black;
     color: white;
     font-weight: 900;
+    margin-bottom: 0;
+    
 
+}
+
+h6{
+    color: black;
+    font-weight: bolder;
+    margin-top: 20px;
+   
+
+}
+
+.left{
+    text-align: left;
+
+}
+
+img{
+    max-height: 500px;
+    padding-top: 15px;
 }

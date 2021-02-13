@@ -5,6 +5,7 @@ import image from './monaLisa.jpg'
 import AllProducts from './AllProducts.jsx'
 import Product from './ProductPage.jsx'
 import About from './about.jsx'
+import MainPage from './home.jsx';
 function Main(){
     const painting = {
         pic: image,
@@ -19,6 +20,6 @@ function Main(){
         instock: false
 
     }
-    return <div><Header/><About/><Footer/> </div>;
+    return <div><Header/>< MainPage/><Footer/> </div>;
 }
 export default Main;

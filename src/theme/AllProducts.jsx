@@ -12,31 +12,7 @@ import './AllProducts.css'
 
 function AllProducts() {
     const [selectValue, setSelectValue] = useState('2')
-    useEffect(()=>{
-        switch(selectValue){
-        case '1':
-            
-            
-            setPaintings((oldValue)=>oldValue.sort(lowToHigh));
-            break;
-        case '2':
-           
-           
-            setPaintings((oldValue)=>oldValue.sort(highToLow));
-            break;
-        case '3':
-           
-           
-            setPaintings((oldValue)=>oldValue.sort(topRated));
-            break;
-    }
-    }
-    )
-    
-
-    
-
-    const [paintings2, setPaintings] = useState([{
+    let paintings = [{
         pic: mona,
         name: 'Mona Lisa',
         year: '1516',
@@ -73,16 +49,43 @@ function AllProducts() {
         rating: 3,
         instock: true
 
-    }]);
+    }]
+    const [paintings2, setPaintings2] = useState(paintings);
+    useEffect(()=>{
+        
+        switch(selectValue){
+        case '1':
+            
+            
+            setPaintings2((oldValue)=>{return [...oldValue.sort(lowToHigh)]});
+            break;
+        case '2':
+           
+           
+            setPaintings2((oldValue)=>{return [...oldValue.sort(highToLow)]});
+            break;
+        case '3':
+           
+           
+            setPaintings2((oldValue)=>{ return [...oldValue.sort(topRated)]});
+            break;
+    }
+    }, [selectValue]
+    )
+    
+
+    
+
+   
     function lowToHigh(a, b) {
-        return b.price - a.price;
+        return a.price - b.price;
         
     }
     function highToLow(a,b) {
-        return a.price - b.price;
+        return b.price - a.price;
     }
     function topRated(a, b) {
-        return a.rating - b.rating;
+        return a.name.rating - b.name.rating;
         
     }
     

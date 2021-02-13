@@ -21,3 +21,6 @@
 img{
     width: 90%;
 }
+body{
+    overflow-wrap: normal;
+}
