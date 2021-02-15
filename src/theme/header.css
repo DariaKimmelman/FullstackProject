@@ -1,0 +1,23 @@
+h6{
+    font-weight: bolder;
+    
+
+}
+a.dropdown-item{
+    padding-left: 0;
+    font-size: medium;
+}
+div.col{
+    width: 200px;
+}
+
+.blackfont{
+    color:black;
+    display: block;
+    
+}
+.blackfont:hover{
+    font-weight: bold;
+    color: grey;
+    text-decoration: none;
+}

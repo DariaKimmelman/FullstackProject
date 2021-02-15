@@ -5,12 +5,12 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import { faInstagramSquare } from '@fortawesome/free-brands-svg-icons';
 function Footer(){
-    return <Navbar bg="dark" expand="lg" variant = 'dark' sticky="bottom">
+    return <Navbar style={{}}bg="dark" expand="lg" variant = 'dark' sticky="bottom">
     
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link href="#home">Contact Us</Nav.Link>
+        <Nav.Link href="/contactus">Contact Us</Nav.Link>
         <Nav.Link href="#home"><FontAwesomeIcon icon={faFacebook} size="2x"/></Nav.Link>
         <Nav.Link href="#home"><FontAwesomeIcon icon={faTwitterSquare}  size="2x"/></Nav.Link>
         <Nav.Link href="#home"><FontAwesomeIcon icon={faInstagramSquare}  size="2x"/></Nav.Link>

@@ -1,6 +1,6 @@
 import React from 'react'
 import background from './background.jpg'
-import{Jumbotron, CardDeck, Button, Row, Col} from 'react-bootstrap'
+import{Jumbotron, CardDeck, Button, Row, Col, Modal} from 'react-bootstrap'
 import './home.css'
 import decor from './decor.jfif'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,6 +12,8 @@ import MainCard from './mainPageCard.jsx'
 import mona from './monaLisa.jpg'
 import girl from './girlwithpearl.jpg'
 import night from './starrynight.jpg'
+import {LinkContainer} from 'react-router-bootstrap'
+import {useState} from 'react'
 
 function MainPage(){let paintings = [{
     pic: mona,
@@ -26,6 +28,32 @@ function MainPage(){let paintings = [{
     instock: false
 
 }, {
+    pic: girl,
+    name: 'Girl With a Pearl Earring',
+    year: '1665',
+    author:'Johannes Vermeer',
+    price: 80000,
+    medium: 'Oil on canvas',
+    size: '44.5 cm × 39 cm ',
+    subject: 'People',
+    rating: 4,
+    instock: true
+
+},
+{
+    pic: girl,
+    name: 'Girl With a Pearl Earring',
+    year: '1665',
+    author:'Johannes Vermeer',
+    price: 80000,
+    medium: 'Oil on canvas',
+    size: '44.5 cm × 39 cm ',
+    subject: 'People',
+    rating: 4,
+    instock: true
+
+},
+{
     pic: girl,
     name: 'Girl With a Pearl Earring',
     year: '1665',
@@ -54,17 +82,50 @@ function MainPage(){let paintings = [{
     function toCard(item, index){
         return <MainCard  key={index} paintings={item}></MainCard>
     }
+    function topRated(a, b) {
+        return a.name.rating - b.name.rating;
+        
+    }
+    let sorted;
+    if(paintings.length <= 5){
+       sorted = paintings.sort(topRated);
+    }
+    else{
+        sorted = paintings.sort(topRated).slice(0, 5);  
+    }
 
+    const [show, setShow] = useState(true);
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
-    return <div id="body"><Jumbotron id='header' style={{paddingTop:'0', paddingRight: '0', paddingBottom: '0'}} >
+    return <div id="body" className= 'dark'>
+        <Modal id="modal" style={{backgroundColor:'black'}}
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>It's dark here...</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Please turn on the light.
+        </Modal.Body>
+        <Modal.Footer>
+        <Button variant="danger" style={{marginTop: "0", marginLeft: '15px'}} onClick = {handleClose}><FontAwesomeIcon icon= {faPowerOff}/></Button>
+          
+        </Modal.Footer>
+      </Modal>
+
+        <Jumbotron id='header' style={{paddingTop:'0', paddingRight: '0', paddingBottom: '0'}} >
         <Row>
             <Col xs="1">
             </Col>
         <Col>
         <h1 >Welcome to E Gallery</h1>
-        <Button style={{marginLeft: '150px', marginTop: '15px'}} variant="danger">Shop now</Button> 
-        <Button variant="danger" style={{marginTop: "15px", marginLeft: '15px'}}><FontAwesomeIcon icon= {faPowerOff}/></Button>
+        <LinkContainer to="/AllProducts"><Button style={{marginLeft: '150px',  marginTop:'30px', marginBottom: '10px'}} variant="danger">Shop now</Button></LinkContainer> 
+        
         </Col>
         <Col xs="7">
         <img style={{width: '100%', maxHeight: '150px', paddingTop:'0'}} src={decor} alt=""/>
@@ -92,9 +153,9 @@ function MainPage(){let paintings = [{
         <p>Secure transaction. Full peace of mind guaranteed.</p>
         </Col>
     </Row>
-    <h1>Top Rated</h1>
+    <h1 className= 'dark'>Top Rated</h1>
     
-    <CardDeck>{paintings.map(toCard)}</CardDeck>
+    <CardDeck style={{backgroundImage: `url(${background})`, backgroundSize:'cover', paddingLeft:'250px'}}>{sorted.map(toCard)}</CardDeck>
 
     </div>
 

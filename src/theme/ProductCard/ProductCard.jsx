@@ -22,9 +22,9 @@ function ProductCard(props){
     }
    return <Card id="card" >
    <Card.Img variant="top" src={props.paintings.pic}/>
-   <Card.Body>
-    <h6>{props.paintings.name}</h6>
-     <h6>{props.paintings.author}</h6>
+   <Card.Body >
+    <h6 className="carddesign">{props.paintings.name}</h6>
+     <h6 className="carddesign">{props.paintings.author}</h6>
      <div>{price}{sold}{heart}{cart}</div>
    </Card.Body>
  </Card>

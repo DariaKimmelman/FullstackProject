@@ -6,7 +6,7 @@ import davinci from './davinci.jfif'
 import vangogh from './vangogh.jfif'
 
 function About(){
-    return <div><Jumbotron id= "header">
+    return <div><Jumbotron id= "header2">
     <h1>About Us</h1>
     
   </Jumbotron >

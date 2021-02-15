@@ -1,20 +1,45 @@
 #card{
-    max-width: 250px;
+    max-width: 220px;
     height: min-content;
     text-align: left;
     flex: 1 0 100%;
-    margin-top: 20px;
     
+   
+    
+    
+}
+div.card-columns{
+    padding-left: 150px;
+    padding-right: 0;
+}
+img.card-img-top {
+    
+    margin-top: 10px;
+   
+}
+div.card-body{
+    background-color: #fff;
+    margin-bottom: 20px;
 }
 .linethrough{
     text-decoration: line-through;
 }
 
-h6{
-    color: gray;
+.carddesign{
+    color: grey;
+    margin-top: 15px;
+    font-weight: normal;
 }
 .right{
   float: right;
    color: black;
    font-size: small;
 }
+div#card.card.card{
+    margin: 0;
+}
+
+div.card-body{
+    padding-top: 15px;
+}
+
