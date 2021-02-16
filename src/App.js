@@ -150,7 +150,7 @@ function handleFilterChange(filter){
       <Route exact path="/Blog" component={Blog}></Route>
       <Route exact path="/Login" component={Login}></Route>
       <Route exact path="/Signin" component={SignIn}></Route>
-      <Route exact path="/ShoppingCart" component={ShoppingCart}></Route>
+      <Route exact path="/ShoppingCart" component={()=> <ShoppingCart paintings = {paintings}/>}></Route>
     </Switch>
       <Footer/>
     </div>
