@@ -15,8 +15,11 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 
 function Header(props){
   const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
     return <Navbar bg="light" expand="lg" sticky="top">
     <Navbar.Brand href="/"><img src= {logo}  alt="logo" height="60" width="50"/></Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -79,7 +82,40 @@ function Header(props){
   </MDBRow>
 </MDBContainer>
       </Modal>
-        <Nav.Link href="/SignIn">Join</Nav.Link>
+      <Button style={{backgroundColor:'inherit', border:'none', color:'#007bff'}} onClick={handleShow2} >Sign In</Button>
+      <Modal show={show2} onHide={handleClose2} >
+      <Modal.Header style={{border:'none',backgroundColor:'#ebe8e5', padding:'10px'}}closeButton/>
+      <MDBContainer style={{textAlign:"center",backgroundColor:'#ebe8e5'}}>
+  <MDBRow>
+    <MDBCol md="11">
+      <form>
+        <p className="h4 text-center mb-4">Sign In</p>
+        <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+          Your First Name
+        </label>
+        <input type="text" id="defaultFormRegisterNameEx" className="form-control" />
+        <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+          Your Last Name
+        </label>
+        <input type="text" id="defaultFormRegisterLNameEx" className="form-control" />
+        <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
+          Your email
+        </label>
+        <input type="email" id="defaultFormLoginEmailEx" className="form-control" />
+        <br />
+        <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">
+          Your password
+        </label>
+        <input type="password" id="defaultFormLoginPasswordEx" className="form-control" />
+        <div className="text-center mt-4">
+          <MDBBtn  className="login" color="danger" type="submit" block>Sign In</MDBBtn>
+        </div>
+        
+      </form>
+    </MDBCol>
+  </MDBRow>
+</MDBContainer>
+      </Modal>
         <Nav.Link href="/ShoppingCart"><FontAwesomeIcon icon={faShoppingCart} /></Nav.Link>
     </Navbar.Collapse>
     

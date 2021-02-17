@@ -18,7 +18,7 @@ function Product(props){
         exists = '';
     }
 
-    return <Container id='ppage' style={{backgroundImage: `url(${back})`}}  fluid >
+    return <Container  id='ppage' style={{backgroundImage: `url(${back})`, height:'100%'}}  fluid >
     <Row >
       <Col xs={3}></Col>
       <Col xs={4}><img src={props.painting.pic} alt={props.painting.name}/></Col>
@@ -37,8 +37,10 @@ function Product(props){
          <p>{stars} </p>
       </div>
       <Button variant="danger" block>Add to Cart</Button> 
+      <div style={{paddingBottom:'50%'}}>
       <Button variant="secondary" className = "topandleft"style={{width:'48%', marginTop:'10px'}}> ♥ Favorite</Button>
       <Button variant="secondary" style={{width:'48%',marginTop:'10px' , marginLeft:'10px'}}> ☹ Dislike</Button>
+      </div>
       </Col>
     </Row>
   </Container>

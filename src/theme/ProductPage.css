@@ -1,5 +1,6 @@
 #paintingDetails{
     text-align: left;
+    padding-top: 20px;
 
 }
 #price{
@@ -19,6 +20,7 @@
     background-size: cover;
 }
 img{
+    padding-top: 20px;
     width: 90%;
 }
 body{

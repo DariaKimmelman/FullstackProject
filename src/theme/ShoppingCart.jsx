@@ -4,6 +4,8 @@ import {Row, Col, Container, Button} from 'react-bootstrap'
 import './ShoppingCart.css'
 import { PayPalButton } from "react-paypal-button-v2";
 import ShoppingCartItem from './ShoppingCartItem/ShoppingCartItem.jsx'
+import {LinkContainer} from 'react-router-bootstrap'
+import {Link} from 'react-router-dom'
 function ShoppingCart(props){
     let paintings = props.paintings;
     function sum(){
@@ -11,7 +13,7 @@ function ShoppingCart(props){
         for(const item of props.paintings){
             sum+=item.price
         }
-        return sum;
+        return sum + 30;
         
     }
     function toShoppingCartItem(item, index){
@@ -19,7 +21,7 @@ function ShoppingCart(props){
     }
 
 
-    return <Container fluid style={{backgroundImage: `URL(${background})`, backgroundSize:'cover'}}>
+    return <Container fluid style={{backgroundImage: `URL(${background})`, backgroundSize:'cover', minHeight:'500px'}}>
         <Row style={{textAlign:'center'}}>
         <h3 style={{paddingLeft:'45%', paddingBottom:'20px'}}>Shopping Cart</h3>
         </Row>
@@ -31,11 +33,11 @@ function ShoppingCart(props){
             <Col id= 'ordersummary' xs={4} style={{textAlign:'left'}}>
                 <h5>Order Summary</h5>
                 <div>
-                <p>Artwork subtotal <span style={{float:'right'}}>0.0$</span></p>
-                <p>Shipping total <span style={{float:'right'}}>30$</span></p>
-                <p style={{fontWeight:'bolder'}}>Order total <span style={{float:'right'}}>{sum()}$</span></p>
-                <Button style={{marginBottom: '10px'}}variant="danger" block>Checkout →</Button>
-                <PayPalButton ></PayPalButton>
+                    <p>Artwork subtotal <span style={{float:'right'}}>0.0$</span></p>
+                    <p>Shipping total <span style={{float:'right'}}>30$</span></p>
+                    <p style={{fontWeight:'bolder'}}>Order total <span style={{float:'right'}}>{sum()}$</span></p>
+                    <Link to="/checkout"><Button style={{marginBottom: '10px'}}variant="danger" block>Checkout →</Button></Link>
+                    <PayPalButton ></PayPalButton>
                 
             </div></Col>
         </Row>

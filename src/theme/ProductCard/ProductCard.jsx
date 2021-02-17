@@ -3,6 +3,8 @@ import {Card, Button} from 'react-bootstrap'
 import './ProductCard.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons'
+import {Link} from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap'
 
 function ProductCard(props){
     let price;
@@ -20,14 +22,14 @@ function ProductCard(props){
         sold = <span style={{fontWeight: 'bolder', marginLeft: '5px'}}>Sold <span style={{color: 'red'}}>●</span></span>
         
     }
-   return <Card id="card" >
+   return <LinkContainer to='/ProductPage'><Card id="card" >
    <Card.Img variant="top" src={props.paintings.pic}/>
    <Card.Body >
     <h6 className="carddesign">{props.paintings.name}</h6>
      <h6 className="carddesign">{props.paintings.author}</h6>
      <div>{price}{sold}{heart}{cart}</div>
    </Card.Body>
- </Card>
+ </Card></LinkContainer>
     
 }
 export default ProductCard

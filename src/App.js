@@ -11,7 +11,6 @@ import {
   Link
 } from "react-router-dom";
 import MainPage from './theme/home';
-import Product from './theme/ProductPage';
 import AllProducts from './theme/AllProducts';
 import About from './theme/about';
 import Blog from './theme/blog';
@@ -19,11 +18,13 @@ import Login from './theme/Login';
 import SignIn from './theme/SignIn';
 import ShoppingCart from './theme/ShoppingCart';
 import ContactUs from './theme/contactus';
+import Product from './theme/ProductPage'
 import ReactDOM from 'react-dom'
 import mona from './theme/monaLisa.jpg'
 import girl from './theme/girlwithpearl.jpg'
 import night from './theme/starrynight.jpg'
 import {useState} from 'react'
+import Checkout from './theme/checkout';
 
 function App() {
  
@@ -117,6 +118,19 @@ function App() {
     instock: true
 
 }]
+const painting = {
+  pic: night,
+  name: 'Starry Night',
+  year: '1889',
+  author:'Vincent van Gogh',
+  price: 20000,
+  medium: 'Oil on canvas',
+  size: '73.7 cm × 92.1 cm ',
+  subject: 'Landscapes',
+  rating: 3,
+  instock: true
+
+}
 const [pictures, setPictures] = useState(paintings)
 function handleFilterChange(filter){
  
@@ -138,12 +152,12 @@ function handleFilterChange(filter){
 
 
   return (
+    <div className="App" style={{}}>
     <BrowserRouter>
-    <div className="App">
+    
       <Header onFilterChange={handleFilterChange}/>
       <Switch>
       <Route exact path="/" exact component={MainPage}></Route>
-      <Route exact path="/ProductPage" component={Product}></Route>
       <Route exact path="/AllProducts" component={()=> <AllProducts paintings = {pictures}/>}></Route>
       <Route exact path="/about" component={About}></Route>
       <Route exact path="/contactus" component={ContactUs}></Route>
@@ -151,10 +165,13 @@ function handleFilterChange(filter){
       <Route exact path="/Login" component={Login}></Route>
       <Route exact path="/Signin" component={SignIn}></Route>
       <Route exact path="/ShoppingCart" component={()=> <ShoppingCart paintings = {paintings}/>}></Route>
+      <Route exact path="/ProductPage" component={()=> <Product painting = {painting}/>}></Route>
+      <Route exact path="/checkout"  component={()=> <Checkout sum = {6000}/>}></Route>
     </Switch>
-      <Footer/>
-    </div>
+      <Footer />
+   
     </BrowserRouter>
+    </div>
   );
 }
 

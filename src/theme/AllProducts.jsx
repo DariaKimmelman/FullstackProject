@@ -85,7 +85,7 @@ function AllProducts(props) {
           <option value="3">Top Rated</option> 
        </select>
        </Row>
-       <div style={{backgroundImage: `url(${background})`, backgroundSize:'cover'}} className="wrap-cards">
+       <div style={{backgroundImage: `url(${background})`, backgroundSize:'cover', minHeight:'500px'}} className="wrap-cards">
         <CardColumns style={{ columnCount:'5'}}>{paintings2.map(turnToCard)}
 </CardColumns>
 </div>
