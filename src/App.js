@@ -25,6 +25,7 @@ import girl from './theme/girlwithpearl.jpg'
 import night from './theme/starrynight.jpg'
 import {useState} from 'react'
 import Checkout from './theme/checkout';
+import BlogMain from './theme/BlogMain'
 
 function App() {
  
@@ -151,6 +152,10 @@ function handleFilterChange(filter){
 }
 
 
+
+
+
+
   return (
     <div className="App" style={{}}>
     <BrowserRouter>
@@ -167,6 +172,8 @@ function handleFilterChange(filter){
       <Route exact path="/ShoppingCart" component={()=> <ShoppingCart paintings = {paintings}/>}></Route>
       <Route exact path="/ProductPage" component={()=> <Product painting = {painting}/>}></Route>
       <Route exact path="/checkout"  component={()=> <Checkout sum = {6000}/>}></Route>
+      <Route exact path="/BlogMain"  component={BlogMain}></Route>
+
     </Switch>
       <Footer />
    

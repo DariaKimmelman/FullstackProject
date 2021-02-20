@@ -26,7 +26,7 @@ function Header(props){
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
         <Nav.Link href="/about">About</Nav.Link>
-        <Nav.Link href="/blog">Blog</Nav.Link>
+        <Nav.Link href="/BlogMain">Blog</Nav.Link>
         <NavDropdown title="Catalog" id="basic-nav-dropdown" >
         <Container style={{width: '500px'}}>
           <Row >

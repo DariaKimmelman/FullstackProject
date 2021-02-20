@@ -13,7 +13,7 @@ function Blog(){
   <figure  >
         <img  src={example} alt="image"></img>
    
-        <figcaption style={{textAlign: 'left', maxWidth:'700px', fontFamily: 'sans-serif', fontSize: '18px', marginLeft:'150px', marginTop: '20px' }} >Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto labore adipisci alias inventore, quos saepe nemo modi, deleniti itaque laboriosam et cupiditate error non porro natus? Labore possimus veniam hic.
+        <figcaption style={{textAlign: 'left', width:'70%', fontFamily: 'sans-serif', fontSize: '18px', marginLeft:'150px', marginTop: '20px' }} >Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto labore adipisci alias inventore, quos saepe nemo modi, deleniti itaque laboriosam et cupiditate error non porro natus? Labore possimus veniam hic.
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti modi fugiat illo, porro ipsam et, vel quasi sapiente fugit est iste deserunt quaerat quibusdam culpa saepe cupiditate iure cum dolores!
         </figcaption>
   </figure>

@@ -13,13 +13,13 @@ function Checkout(props){
         <Row>
             <Col>
         <Row>
-            <Col id='body'  >
+            <Col id='checkoutbody'  >
                 <Container className="container">
                     <form>
       
                         <Row className="row">
                              <Col className="col-50">
-                                 <h5>Shipping Address</h5>
+                                 <h5 className='bold'>Shipping Address</h5>
                                  <label for="fname"> Full Name</label>
                                  <input type="text" id="fname" name="firstname" placeholder="John M. Doe" className="input"/>
                                 <label for="email"> Email</label>
@@ -42,7 +42,7 @@ function Checkout(props){
           </Col>
 
           <Col className="col-50">
-            <h5>Payment</h5>
+            <h5 className='bold'>Payment</h5>
             
             
             <label for="cname">Name on Card</label>
@@ -71,7 +71,8 @@ function Checkout(props){
         
 
         
-            <Col id= 'ordersummary' xs={4} style={{textAlign:'left'}}>
+            <Col  xs={4} style={{textAlign:'left'}}>
+                <div className='ordersummary'>
                 <h5>Order Summary</h5>
                 <div>
                 <p>Artwork subtotal <span style={{float:'right'}}>0.0$</span></p>
@@ -84,7 +85,7 @@ function Checkout(props){
               <FontAwesomeIcon icon={faCcMastercard} style={{color:'red'}}/>
               <FontAwesomeIcon icon={faCcDiscover} style={{color:'orange'}}/>
             </div>
-                
+            </div> 
                 
             </div>
             </Col>

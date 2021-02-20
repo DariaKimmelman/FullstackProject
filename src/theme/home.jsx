@@ -93,8 +93,12 @@ function MainPage(){let paintings = [{
     else{
         sorted = paintings.sort(topRated).slice(0, 5);  
     }
-
-    const [show, setShow] = useState(true);
+    let [show, setShow] = useState(true);
+    if(!window.sessionStorage){
+       console.log('Hello');
+       handleShow();
+    }
+    
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -106,7 +110,7 @@ function MainPage(){let paintings = [{
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header >
           <Modal.Title>It's dark here...</Modal.Title>
         </Modal.Header>
         <Modal.Body>

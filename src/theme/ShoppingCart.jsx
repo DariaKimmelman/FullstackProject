@@ -30,7 +30,8 @@ function ShoppingCart(props){
             <Col>
                 {paintings.map(toShoppingCartItem)}
             </Col>
-            <Col id= 'ordersummary' xs={4} style={{textAlign:'left'}}>
+            <Col  xs={4} style={{textAlign:'left'}}>
+                <div id= 'ordersummary'>
                 <h5>Order Summary</h5>
                 <div>
                     <p>Artwork subtotal <span style={{float:'right'}}>0.0$</span></p>
@@ -39,6 +40,7 @@ function ShoppingCart(props){
                     <Link to="/checkout"><Button style={{marginBottom: '10px'}}variant="danger" block>Checkout →</Button></Link>
                     <PayPalButton ></PayPalButton>
                 
+            </div>
             </div></Col>
         </Row>
     </Container>;
