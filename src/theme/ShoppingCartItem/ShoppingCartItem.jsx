@@ -18,7 +18,7 @@ function ShoppingCartItem(props){
         <br/>
         {props.paintings.price}
         <br/>
-        <button style={{border:'none', paddingLeft:'0', textDecoration:'underline', backgroundColor:'white'}}>Remove</button>
+        <button onClick={()=>props.onRemove(props.paintings.id)} style={{border:'none', paddingLeft:'0', textDecoration:'underline', backgroundColor:'white'}}>Remove</button>
     </p>
     
     

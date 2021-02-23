@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import background from './background.jpg'
 import{Jumbotron, CardDeck, Button, Row, Col, Modal} from 'react-bootstrap'
 import './home.css'
@@ -78,7 +78,13 @@ function MainPage(){let paintings = [{
     rating: 3,
     instock: true
 }]
+let [show, setShow] = useState(true);
+useEffect(()=>{
+     if(sessionStorage.getItem('status')){
+         setShow(false)
+    }
     
+},[])
     function toCard(item, index){
         return <MainCard  key={index} paintings={item}></MainCard>
     }
@@ -93,15 +99,23 @@ function MainPage(){let paintings = [{
     else{
         sorted = paintings.sort(topRated).slice(0, 5);  
     }
-    let [show, setShow] = useState(true);
-    if(!window.sessionStorage){
-       console.log('Hello');
-       handleShow();
+    
+    const handleClose = () => {setShow(false);
+       
+        sessionStorage.setItem('status', true);
     }
     
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () =>{setShow(true);}
+    
+    
+    
+
+    
+    
+    
+    
+    
 
     return <div id="body" className= 'dark'>
         <Modal id="modal" style={{backgroundColor:'black'}}
@@ -110,19 +124,19 @@ function MainPage(){let paintings = [{
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header >
+        <Modal.Header style={{backgroundColor:'#ebe8e5'}}>
           <Modal.Title>It's dark here...</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{backgroundColor:'#ebe8e5'}}>
           Please turn on the light.
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer style={{backgroundColor:'#ebe8e5'}}> 
         <Button variant="danger" style={{marginTop: "0", marginLeft: '15px'}} onClick = {handleClose}><FontAwesomeIcon icon= {faPowerOff}/></Button>
           
         </Modal.Footer>
       </Modal>
 
-        <Jumbotron id='header' style={{paddingTop:'0', paddingRight: '0', paddingBottom: '0'}} >
+        <Jumbotron id='header' style={{paddingTop:'0', paddingRight: '0', paddingBottom: '0', paddingLeft:'5px'}} >
         <Row>
             <Col xs="1">
             </Col>
@@ -139,7 +153,7 @@ function MainPage(){let paintings = [{
         </Row>
         
     </Jumbotron>
-    <Row>
+    <Row style={{marginLeft:'72px'}}>
         
         <Col className= 'style'>
         <FontAwesomeIcon icon= {faImage} size= '2x'></FontAwesomeIcon>

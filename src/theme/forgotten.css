@@ -1,0 +1,9 @@
+.textalignleft{
+    text-align: left;
+}
+
+.inputstyle{
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}

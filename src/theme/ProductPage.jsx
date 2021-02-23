@@ -20,8 +20,8 @@ function Product(props){
 
     return <Container  id='ppage' style={{backgroundImage: `url(${back})`, height:'100%'}}  fluid >
     <Row >
-      <Col xs={3}></Col>
-      <Col xs={4}><img src={props.painting.pic} alt={props.painting.name}/></Col>
+      <Col xs={1}style={{width:'112px'}}></Col>
+      <Col xs={6} style={{paddingLeft:'0', imageWidth:'100%', width:'675px'}}><img style={{width:'100%'}} src={props.painting.pic} alt={props.painting.name}/></Col>
       <Col xs={3}><div id="paintingDetails">
           <h5>{props.painting.name} ({props.painting.year})</h5>
           <p  >by <span style={{textDecoration:'underline'}}>{props.painting.author}</span> </p>

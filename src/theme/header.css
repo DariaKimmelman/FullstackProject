@@ -25,3 +25,8 @@ div.col{
 .login{
     margin-bottom: 15px;
 }
+
+#basic-navbar-nav>a {
+    color: inherit;
+    font-size: larger;
+}

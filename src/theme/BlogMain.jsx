@@ -28,10 +28,12 @@ function BlogMain(props){
 
 
     return <div>
-         <Jumbotron style={{backgroundColor:"turquoise", marginBottom:'0'}}>
+         <Jumbotron style={{backgroundColor:"#00ADB5",color:'white', marginBottom:'0', paddingTop: '50px',
+      paddingBottom: '50px',
+      height: '150px'}}>
     <h1>Inspiration</h1>
   </Jumbotron>
-  <CardColumns className='postsContainer' style={{backgroundImage:`url(${background})`,columnCount:'auto'}} >{posts.slice(90)}</CardColumns>
+  <CardColumns className='postsContainer' style={{backgroundImage:`url(${background})`,columnCount:'auto', paddingLeft:'0'}} >{posts.slice(90)}</CardColumns>
 
     </div>
 }

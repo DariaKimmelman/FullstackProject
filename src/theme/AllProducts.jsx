@@ -4,7 +4,7 @@ import mona from './monaLisa.jpg'
 import girl from './girlwithpearl.jpg'
 import night from './starrynight.jpg'
 import ProductCard from './ProductCard/ProductCard.jsx'
-import {CardColumns, Row} from 'react-bootstrap'
+import {CardColumns, Row, Jumbotron} from 'react-bootstrap'
 import background from './background.jpg'
 import './AllProducts.css'
 
@@ -78,13 +78,17 @@ function AllProducts(props) {
     
     
     return <div > 
-       <Row className='pink'>
+       <Jumbotron className='pink' style={{marginBottom:'0', height:'150px', paddingTop:'30px'}}>
+           <h1>Gallery</h1>
+       
+       </Jumbotron>
+       <div>
        <select name="" id="" value={selectValue} onChange={(e) =>updatePaintings(e.target.value)}>
             <option value="1"  >Price(Low)</option> 
            <option value="2">Price(High)</option>
           <option value="3">Top Rated</option> 
        </select>
-       </Row>
+       </div>
        <div style={{backgroundImage: `url(${background})`, backgroundSize:'cover', minHeight:'500px'}} className="wrap-cards">
         <CardColumns style={{ columnCount:'5'}}>{paintings2.map(turnToCard)}
 </CardColumns>

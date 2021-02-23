@@ -26,10 +26,14 @@ import night from './theme/starrynight.jpg'
 import {useState} from 'react'
 import Checkout from './theme/checkout';
 import BlogMain from './theme/BlogMain'
+import Forgotten from './theme/forgotten';
+import UserPage from './theme/UserPage';
+import AdminPage from './theme/AdminPage';
 
 function App() {
  
   let paintings = [{
+    id:1,
     pic: mona,
     name: 'Mona Lisa',
     year: '1516',
@@ -42,6 +46,7 @@ function App() {
     instock: false
 
 }, {
+  id:2,
     pic: girl,
     name: 'Girl With a Pearl Earring',
     year: '1665',
@@ -55,6 +60,7 @@ function App() {
 
 },
 {
+    id:3,
     pic: girl,
     name: 'Girl With a Pearl Earring',
     year: '1665',
@@ -68,6 +74,7 @@ function App() {
 
 },
 {
+    id: 4,
     pic: girl,
     name: 'Girl With a Pearl Earring',
     year: '1665',
@@ -81,6 +88,7 @@ function App() {
 
 },
 {
+    id: 5,
     pic: girl,
     name: 'Girl With a Pearl Earring',
     year: '1665',
@@ -94,6 +102,7 @@ function App() {
 
 },
 {
+    id: 6,
     pic: girl,
     name: 'Girl With a Pearl Earring',
     year: '1665',
@@ -107,6 +116,7 @@ function App() {
 
 },
 {
+    id:7,
     pic: night,
     name: 'Starry Night',
     year: '1889',
@@ -132,11 +142,14 @@ const painting = {
   instock: true
 
 }
+const orders = [{orderId: 1, ProductId: 5, ProductName: 'Alien', CustomerId: 8, price: 100, customerId: 565, customerName: 'kaka', orderDate: new Date() },
+{orderId: 5, ProductId: 7, ProductName: 'Cow', CustomerId: 89, price: 700, customerId: 556, customerName: 'lala', orderDate: new Date() }]
+const subjects = ['People', 'Landscapes', 'Floral', 'Animals','Still Life'];
 const [pictures, setPictures] = useState(paintings)
 function handleFilterChange(filter){
  
  let newpaintings;
- if(typeof filter == 'string'){
+ if(subjects.includes(filter)){
   newpaintings= paintings.filter((element)=>{return element.subject == filter});
  }
  if(typeof filter == 'number' && filter <= 1000){
@@ -146,6 +159,9 @@ function handleFilterChange(filter){
  if(typeof filter == 'number' && filter > 1000){
   newpaintings= paintings.filter((element)=>{return element.price > filter});
 
+ }
+ if(!subjects.includes(filter) && typeof filter != 'number'){
+   newpaintings = paintings.filter((item)=>{return item.name.toLowerCase().includes(filter.toLowerCase()) || item.author.toLowerCase().includes(filter.toLowerCase()) || item.medium.toLowerCase().includes(filter.toLowerCase()) || item.price == Number(filter)})
  }
   
   setPictures([...newpaintings]);
@@ -170,9 +186,12 @@ function handleFilterChange(filter){
       <Route exact path="/Login" component={Login}></Route>
       <Route exact path="/Signin" component={SignIn}></Route>
       <Route exact path="/ShoppingCart" component={()=> <ShoppingCart paintings = {paintings}/>}></Route>
-      <Route exact path="/ProductPage" component={()=> <Product painting = {painting}/>}></Route>
+      <Route exact path="/ProductPage" component={()=> <Product onClickOnCard={(i)=>{console.log(i)}} /*painting = {painting}*//>}></Route>
       <Route exact path="/checkout"  component={()=> <Checkout sum = {6000}/>}></Route>
       <Route exact path="/BlogMain"  component={BlogMain}></Route>
+      <Route exact path="/forgotten"  component={Forgotten}></Route>
+      <Route exact path="/AdminPage"  component={()=> <AdminPage orders = {orders}/>}></Route>
+      <Route exact path="/UserPage"  component={()=> <UserPage orders = {orders}/>}></Route>
 
     </Switch>
       <Footer />

@@ -11,15 +11,16 @@ function Checkout(props){
         <h3 style={{paddingLeft:'45%', paddingBottom:'20px'}}>Order Page</h3>
         </Row>
         <Row>
+          <Col xs={1}></Col>
             <Col>
         <Row>
             <Col id='checkoutbody'  >
-                <Container className="container">
+                <Container className="container" style={{marginTop:'8px'}}>
                     <form>
       
                         <Row className="row">
                              <Col className="col-50">
-                                 <h5 className='bold'>Shipping Address</h5>
+                                 <h5 className='bold' style= {{marginTop:"10px"}}>Shipping Address</h5>
                                  <label for="fname"> Full Name</label>
                                  <input type="text" id="fname" name="firstname" placeholder="John M. Doe" className="input"/>
                                 <label for="email"> Email</label>
@@ -42,7 +43,7 @@ function Checkout(props){
           </Col>
 
           <Col className="col-50">
-            <h5 className='bold'>Payment</h5>
+            <h5 className='bold' style= {{marginTop:"10px"}}>Payment</h5>
             
             
             <label for="cname">Name on Card</label>

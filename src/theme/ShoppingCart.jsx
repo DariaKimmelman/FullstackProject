@@ -6,18 +6,31 @@ import { PayPalButton } from "react-paypal-button-v2";
 import ShoppingCartItem from './ShoppingCartItem/ShoppingCartItem.jsx'
 import {LinkContainer} from 'react-router-bootstrap'
 import {Link} from 'react-router-dom'
+import {useState} from 'react'
 function ShoppingCart(props){
-    let paintings = props.paintings;
+    const style={
+        color:'black',
+        label: 'paypal',
+
+    }
+    let [paintings, setPaintings] = useState(props.paintings);
     function sum(){
         let sum = 0
-        for(const item of props.paintings){
+        for(const item of paintings){
             sum+=item.price
         }
         return sum + 30;
         
     }
+    
+    function remove(id) {
+        console.log(id);
+        setPaintings(paintings.filter((item)=>{return item.id != id}));
+        console.log(paintings);
+        
+    }
     function toShoppingCartItem(item, index){
-        return <ShoppingCartItem key={index} paintings={item}/>;
+        return <ShoppingCartItem key={index} paintings={item} onRemove= {remove}/>;
     }
 
 
@@ -38,7 +51,7 @@ function ShoppingCart(props){
                     <p>Shipping total <span style={{float:'right'}}>30$</span></p>
                     <p style={{fontWeight:'bolder'}}>Order total <span style={{float:'right'}}>{sum()}$</span></p>
                     <Link to="/checkout"><Button style={{marginBottom: '10px'}}variant="danger" block>Checkout →</Button></Link>
-                    <PayPalButton ></PayPalButton>
+                    <PayPalButton style={style}></PayPalButton>
                 
             </div>
             </div></Col>

@@ -22,7 +22,7 @@ function ProductCard(props){
         sold = <span style={{fontWeight: 'bolder', marginLeft: '5px'}}>Sold <span style={{color: 'red'}}>●</span></span>
         
     }
-   return <LinkContainer   to='/ProductPage' ><Card className="card padding" >
+   return <LinkContainer onClick={()=>props.onClickOnCard(props.paintings)} to='/ProductPage' ><Card className="card padding" >
    <Card.Img  variant="top" src={props.paintings.pic}/>
    <Card.Body >
     <h6 className="carddesign">{props.paintings.name}</h6>

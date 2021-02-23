@@ -14,18 +14,20 @@ import {useState} from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 
 function Header(props){
+  
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
+  const [search, setSearch] = useState('');
     return <Navbar bg="light" expand="lg" sticky="top">
     <Navbar.Brand href="/"><img src= {logo}  alt="logo" height="60" width="50"/></Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link href="/about">About</Nav.Link>
+        <Nav.Link href="/UserPage">About</Nav.Link>
         <Nav.Link href="/BlogMain">Blog</Nav.Link>
         <NavDropdown title="Catalog" id="basic-nav-dropdown" >
         <Container style={{width: '500px'}}>
@@ -53,10 +55,10 @@ function Header(props){
         
       </Nav>
       <Form inline>
-        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-        <Button variant="outline-success">Search</Button>
+        <FormControl type="text" onChange = {(e)=>{setSearch(e.target.value)}} placeholder="Search" className="mr-sm-2" />
+        <Link to='/AllProducts'><Button onClick={()=>{props.onFilterChange(search)}} style={{border: 'none'}} variant="outline-dark">Search</Button></Link>
       </Form>
-      <Button style={{backgroundColor:'inherit', border:'none', color:'#007bff'}} onClick={handleShow} >Login</Button>
+      <Button style={{border: 'none'}} variant="outline-dark" onClick={handleShow} >Login</Button>
       <Modal show={show} onHide={handleClose} >
       <Modal.Header style={{border:'none',backgroundColor:'#ebe8e5', padding:'10px'}}closeButton/>
       <MDBContainer style={{textAlign:"center",backgroundColor:'#ebe8e5'}}>
@@ -76,13 +78,13 @@ function Header(props){
         <div className="text-center mt-4">
           <MDBBtn  className="login" color="danger" type="submit" block>Login</MDBBtn>
         </div>
-        <Link style={{marginBottom:'15px'}}>Forgot password</Link>
+        <Link to='/forgotten' style={{marginBottom:'15px'}}>Forgot password</Link>
       </form>
     </MDBCol>
   </MDBRow>
 </MDBContainer>
       </Modal>
-      <Button style={{backgroundColor:'inherit', border:'none', color:'#007bff'}} onClick={handleShow2} >Sign In</Button>
+      <Button style={{border: 'none'}} variant="outline-dark" onClick={handleShow2} >Sign In</Button>
       <Modal show={show2} onHide={handleClose2} >
       <Modal.Header style={{border:'none',backgroundColor:'#ebe8e5', padding:'10px'}}closeButton/>
       <MDBContainer style={{textAlign:"center",backgroundColor:'#ebe8e5'}}>

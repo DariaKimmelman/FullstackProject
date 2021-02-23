@@ -7,7 +7,7 @@ select{
     margin-bottom: 20px;
     margin-top: 20px;
     border-radius: 5px;
-    margin-left: 45%;
+    
 }
 
 body{
@@ -27,6 +27,7 @@ div.card-columns{
 }
 
 .pink{
-    background-color: lightsalmon;
+    background-color: #393e46;
+    color: white;
     
 }

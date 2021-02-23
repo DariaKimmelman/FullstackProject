@@ -5,7 +5,9 @@ import {Container, Row, Col} from 'react-bootstrap'
 import gradient from './gradient.jfif'
 function Blog(){
     return <div>
-   <Jumbotron style={{backgroundColor:"turquoise"}}>
+   <Jumbotron style={{backgroundColor:"#00ADB5",color:'white',paddingTop: '50px',
+      paddingBottom: '50px',
+      height: '150px'}}>
     <h1>What's new?</h1>
   </Jumbotron>;
   <Container >
