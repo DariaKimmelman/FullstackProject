@@ -11,7 +11,7 @@ function OrdersTable(props){
         <td>{item.price}</td>
         <td>{item.customerId}</td>
         <td>{item.customerName}</td>
-        <td>{item.orderDate.toString()}</td>
+        <td>{item.orderDate.toUTCString()}</td>
       </tr>
 
     }

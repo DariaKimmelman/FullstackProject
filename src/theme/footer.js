@@ -11,9 +11,9 @@ function Footer(){
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
         <Nav.Link href="/contactus">Contact Us</Nav.Link>
-        <Nav.Link href="#home"><FontAwesomeIcon icon={faFacebook} size="2x"/></Nav.Link>
-        <Nav.Link href="#home"><FontAwesomeIcon icon={faTwitterSquare}  size="2x"/></Nav.Link>
-        <Nav.Link href="#home"><FontAwesomeIcon icon={faInstagramSquare}  size="2x"/></Nav.Link>
+        <Nav.Link href="https://www.facebook.com/" target="_blank"><FontAwesomeIcon icon={faFacebook} size="2x"/></Nav.Link>
+        <Nav.Link href="https://twitter.com/" target="_blank"><FontAwesomeIcon icon={faTwitterSquare}  size="2x"/></Nav.Link>
+        <Nav.Link href="https://www.instagram.com/" target="_blank"><FontAwesomeIcon icon={faInstagramSquare}  size="2x"/></Nav.Link>
         
         
       </Nav>

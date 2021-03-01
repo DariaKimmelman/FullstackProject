@@ -6,35 +6,47 @@ import { PayPalButton } from "react-paypal-button-v2";
 import ShoppingCartItem from './ShoppingCartItem/ShoppingCartItem.jsx'
 import {LinkContainer} from 'react-router-bootstrap'
 import {Link} from 'react-router-dom'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 function ShoppingCart(props){
     const style={
         color:'black',
         label: 'paypal',
 
     }
+    const[price, setPrice] =useState({price:0, ship:0, total:0})
     let [paintings, setPaintings] = useState(props.paintings);
+    useEffect(()=>sum())
     function sum(){
-        let sum = 0
+        let price = 0
+        let ship = 0;
+        let  total = 0;
         for(const item of paintings){
-            sum+=item.price
+            price+=item.price
+            
         }
-        return sum + 30;
+        if(price == 0){
+       ship = 0}
+        else{
+           ship =30;
+        }
+        total = price + ship
+        setPrice({price:price, ship:ship, total:total})
         
     }
     
     function remove(id) {
         console.log(id);
         setPaintings(paintings.filter((item)=>{return item.id != id}));
+        sum()
         console.log(paintings);
         
     }
     function toShoppingCartItem(item, index){
-        return <ShoppingCartItem key={index} paintings={item} onRemove= {remove}/>;
+        return <ShoppingCartItem  onClickOnCard = {props.onClickOnCard} key={index} paintings={item} onRemove= {remove}/>;
     }
 
 
-    return <Container fluid style={{backgroundImage: `URL(${background})`, backgroundSize:'cover', minHeight:'500px'}}>
+    return <Container fluid style={{backgroundImage: `URL(${background})`, backgroundSize:'cover', minHeight:'550px'}}>
         <Row style={{textAlign:'center'}}>
         <h3 style={{paddingLeft:'45%', paddingBottom:'20px'}}>Shopping Cart</h3>
         </Row>
@@ -47,9 +59,9 @@ function ShoppingCart(props){
                 <div id= 'ordersummary'>
                 <h5>Order Summary</h5>
                 <div>
-                    <p>Artwork subtotal <span style={{float:'right'}}>0.0$</span></p>
-                    <p>Shipping total <span style={{float:'right'}}>30$</span></p>
-                    <p style={{fontWeight:'bolder'}}>Order total <span style={{float:'right'}}>{sum()}$</span></p>
+                    <p>Artwork subtotal <span style={{float:'right'}}>{price.price}$</span></p>
+                    <p>Shipping total <span style={{float:'right'}}>{price.ship}$</span></p>
+                    <p style={{fontWeight:'bolder'}}>Order total <span style={{float:'right'}}>{price.total}$</span></p>
                     <Link to="/checkout"><Button style={{marginBottom: '10px'}}variant="danger" block>Checkout →</Button></Link>
                     <PayPalButton style={style}></PayPalButton>
                 

@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 
 function ShoppingCartItem(props){
     return <Row style= {{textAlign:'left', marginTop:'15px', marginBottom:'15px', paddingTop:'15px', backgroundColor:'white', paddingLeft:'15px'}}>
-    <Link to="/ProductPage"><img src={props.paintings.pic} alt="" style= {{width: '150px',height: '150px', paddingTop: '0'}}/></Link>
+    <Link to="/ProductPage" onClick={()=>props.onClickOnCard(props.paintings.id)}><img src={props.paintings.pic} alt="" style= {{width: '150px',height: '150px', paddingTop: '0'}}/></Link>
     <p style={{marginLeft: '25px'}}>{props.paintings.name}
         <br/>
         by {props.paintings.author}

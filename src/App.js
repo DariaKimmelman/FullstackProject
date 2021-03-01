@@ -23,7 +23,7 @@ import ReactDOM from 'react-dom'
 import mona from './theme/monaLisa.jpg'
 import girl from './theme/girlwithpearl.jpg'
 import night from './theme/starrynight.jpg'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Checkout from './theme/checkout';
 import BlogMain from './theme/BlogMain'
 import Forgotten from './theme/forgotten';
@@ -142,10 +142,30 @@ const painting = {
   instock: true
 
 }
+
+const [post,setPost] = useState();
+
+async function loadPosts() {
+  const response = await fetch('https://jsonplaceholder.typicode.com/posts/');
+  const data = await response.json();
+   return data;
+}
+
+const [posts, setPosts] = useState(['loading'])
+window.onload = ()=>{loadPosts().then(data=>{
+  const htmlPosts = data
+ 
+ 
+ 
+ setPosts(htmlPosts)
+ window.sessionStorage.setItem('status', true);}
+)}
+
 const orders = [{orderId: 1, ProductId: 5, ProductName: 'Alien', CustomerId: 8, price: 100, customerId: 565, customerName: 'kaka', orderDate: new Date() },
 {orderId: 5, ProductId: 7, ProductName: 'Cow', CustomerId: 89, price: 700, customerId: 556, customerName: 'lala', orderDate: new Date() }]
 const subjects = ['People', 'Landscapes', 'Floral', 'Animals','Still Life'];
 const [pictures, setPictures] = useState(paintings)
+const [picture,setPicture] = useState(painting);
 function handleFilterChange(filter){
  
  let newpaintings;
@@ -167,6 +187,19 @@ function handleFilterChange(filter){
   setPictures([...newpaintings]);
 }
 
+function goTo(id) {
+  let painting = paintings.filter((item)=>{return item.id === id})
+  setPicture(painting[0]);
+
+  
+}
+
+function findPost(id){
+  let article = posts.filter((item)=>{return item.id === id})
+  setPost(article[0]);
+}
+
+
 
 
 
@@ -178,20 +211,20 @@ function handleFilterChange(filter){
     
       <Header onFilterChange={handleFilterChange}/>
       <Switch>
-      <Route exact path="/" exact component={MainPage}></Route>
-      <Route exact path="/AllProducts" component={()=> <AllProducts paintings = {pictures}/>}></Route>
+      <Route exact path="/" exact component={()=> <MainPage  onClickOnCard={goTo} paintings={paintings}/>}></Route>
+      <Route exact path="/AllProducts" component={()=> <AllProducts  onClickOnCard={goTo} paintings = {pictures}/>}></Route>
       <Route exact path="/about" component={About}></Route>
       <Route exact path="/contactus" component={ContactUs}></Route>
-      <Route exact path="/Blog" component={Blog}></Route>
+      <Route exact path="/Blog" component={()=> <Blog posts= {post}/>}></Route>
       <Route exact path="/Login" component={Login}></Route>
       <Route exact path="/Signin" component={SignIn}></Route>
-      <Route exact path="/ShoppingCart" component={()=> <ShoppingCart paintings = {paintings}/>}></Route>
-      <Route exact path="/ProductPage" component={()=> <Product onClickOnCard={(i)=>{console.log(i)}} /*painting = {painting}*//>}></Route>
+      <Route exact path="/ShoppingCart" component={()=> <ShoppingCart onClickOnCard={goTo} paintings = {paintings}/>}></Route>
+      <Route exact path="/ProductPage" component={()=> <Product painting = {picture}/>}></Route>
       <Route exact path="/checkout"  component={()=> <Checkout sum = {6000}/>}></Route>
-      <Route exact path="/BlogMain"  component={BlogMain}></Route>
+      <Route exact path="/BlogMain"  component={()=> <BlogMain onClickOnPost={findPost} posts= {posts}/>}></Route>
       <Route exact path="/forgotten"  component={Forgotten}></Route>
       <Route exact path="/AdminPage"  component={()=> <AdminPage orders = {orders}/>}></Route>
-      <Route exact path="/UserPage"  component={()=> <UserPage orders = {orders}/>}></Route>
+      <Route exact path="/UserPage"  component={()=> <UserPage  onClickOnCard={goTo} paintings = {paintings}/>}></Route>
 
     </Switch>
       <Footer />

@@ -22,14 +22,16 @@ function ProductCard(props){
         sold = <span style={{fontWeight: 'bolder', marginLeft: '5px'}}>Sold <span style={{color: 'red'}}>●</span></span>
         
     }
-   return <LinkContainer onClick={()=>props.onClickOnCard(props.paintings)} to='/ProductPage' ><Card className="card padding" >
+   return <Card className="card padding" >
+       <LinkContainer onClick={()=>props.onClickOnCard(props.paintings.id)} to='/ProductPage' >
    <Card.Img  variant="top" src={props.paintings.pic}/>
+   </LinkContainer>
    <Card.Body >
     <h6 className="carddesign">{props.paintings.name}</h6>
      <h6 className="carddesign">{props.paintings.author}</h6>
      <div>{price}{sold}{heart}{cart}</div>
    </Card.Body>
- </Card></LinkContainer>
+ </Card>
     
 }
 export default ProductCard

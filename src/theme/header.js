@@ -12,9 +12,14 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 import {Link} from 'react-router-dom'
 import {useState} from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import {useForm} from 'react-hook-form'
 
 function Header(props){
-  
+
+  const { register, handleSubmit, watch, errors } = useForm();
+  const onSubmit = data=>console.log(data);
+  const { register:register2, handleSubmit:handleSubmit2, watch2, errors:errors2 } = useForm();
+  const onSubmit2 = data=>console.log(data);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const handleClose = () => setShow(false);
@@ -23,18 +28,18 @@ function Header(props){
   const handleShow2 = () => setShow2(true);
   const [search, setSearch] = useState('');
     return <Navbar bg="light" expand="lg" sticky="top">
-    <Navbar.Brand href="/"><img src= {logo}  alt="logo" height="60" width="50"/></Navbar.Brand>
+    <Navbar.Brand href="/"><img style={{imageRendering:'pixelated'}} src= {logo}  alt="logo" height="80" width="50"/></Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link href="/UserPage">About</Nav.Link>
-        <Nav.Link href="/BlogMain">Blog</Nav.Link>
-        <NavDropdown title="Catalog" id="basic-nav-dropdown" >
+        <Nav.Link style={{fontSize:'1rem'}} href="/UserPage">About</Nav.Link>
+        <Nav.Link style={{fontSize:'1rem'}} href="/BlogMain">Blog</Nav.Link>
+        <NavDropdown style={{fontSize:'1rem'}}title="Catalog" id="basic-nav-dropdown" >
         <Container style={{width: '500px'}}>
           <Row >
            
             <Col>
-              <h5>Subject</h5>
+              <h5 style={{fontWeight:'bolder'}}>Subject</h5>
          <Link className ="blackfont"to="/AllProducts" onClick={()=>props.onFilterChange('Landscapes')}>Landscapes</Link>
          <Link className ="blackfont"to="/AllProducts" onClick={()=>props.onFilterChange('People')}>People</Link>
          <Link className ="blackfont"to="/AllProducts" onClick={()=>props.onFilterChange('Floral')}>Floral</Link>
@@ -42,7 +47,7 @@ function Header(props){
          <Link className ="blackfont"to="/AllProducts" onClick={()=>props.onFilterChange('Still Life')}>Still Life</Link>
             </Col>
             <Col>
-              <h5>For your budget</h5>
+              <h5 style={{fontWeight:'bolder'}}>For your budget</h5>
              <Link className ="blackfont"to="/AllProducts" onClick={()=>props.onFilterChange(100)}>100$ and under</Link>
              <Link className ="blackfont"to="/AllProducts" onClick={()=>props.onFilterChange(500)}>500$ and under</Link>
              <Link className ="blackfont"to="/AllProducts" onClick={()=>props.onFilterChange(1000)}>1000$ and under</Link>
@@ -64,21 +69,23 @@ function Header(props){
       <MDBContainer style={{textAlign:"center",backgroundColor:'#ebe8e5'}}>
   <MDBRow>
     <MDBCol md="11">
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <p className="h4 text-center mb-4">Login to your account</p>
-        <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
+        <label htmlFor="defaultFormLoginEmailEx" className="grey-text" >
           Your email
         </label>
-        <input type="email" id="defaultFormLoginEmailEx" className="form-control" />
+        <input type="email" id="defaultFormLoginEmailEx" name="email" className="form-control" ref={register}/>
+        
         <br />
         <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">
           Your password
         </label>
-        <input type="password" id="defaultFormLoginPasswordEx" className="form-control" />
+        <input type="password" id="defaultFormLoginPasswordEx" className="form-control" name="password" ref={register} />
+        
         <div className="text-center mt-4">
           <MDBBtn  className="login" color="danger" type="submit" block>Login</MDBBtn>
         </div>
-        <Link to='/forgotten' style={{marginBottom:'15px'}}>Forgot password</Link>
+        <Link to='/forgotten' style={{marginBottom:'15px', color:'inherit'}}>Forgot password?</Link>
       </form>
     </MDBCol>
   </MDBRow>
@@ -90,25 +97,29 @@ function Header(props){
       <MDBContainer style={{textAlign:"center",backgroundColor:'#ebe8e5'}}>
   <MDBRow>
     <MDBCol md="11">
-      <form>
+      <form onSubmit={handleSubmit2(onSubmit2)}>
         <p className="h4 text-center mb-4">Sign In</p>
         <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
           Your First Name
         </label>
-        <input type="text" id="defaultFormRegisterNameEx" className="form-control" />
+        <input type="text" id="defaultFormRegisterNameEx" name="fname" className="form-control" ref={register2({required:true,minLength:2})} />
+        {errors2.fname && <span>This field is required</span>}
         <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
           Your Last Name
         </label>
-        <input type="text" id="defaultFormRegisterLNameEx" className="form-control" />
+        <input type="text" id="defaultFormRegisterLNameEx" name="lname" className="form-control" ref={register2({required:true,minLength:2})} />
+        {errors2.lname && <span>This field is required</span>}
         <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
           Your email
         </label>
-        <input type="email" id="defaultFormLoginEmailEx" className="form-control" />
+        <input type="email" id="defaultFormLoginEmailEx" className="form-control" name="email" ref={register2({required:true,minLength:6, pattern:/^\S+@\S+$/i})}/>
+        {errors2.email && <span>This field is required</span>}
         <br />
         <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">
           Your password
         </label>
-        <input type="password" id="defaultFormLoginPasswordEx" className="form-control" />
+        <input type="password" id="defaultFormLoginPasswordEx" className="form-control" name='password' ref={register2({required:true,minLength:8})} />
+        {errors2.password && <span>Password must be at least 8 characters long</span>}
         <div className="text-center mt-4">
           <MDBBtn  className="login" color="danger" type="submit" block>Sign In</MDBBtn>
         </div>

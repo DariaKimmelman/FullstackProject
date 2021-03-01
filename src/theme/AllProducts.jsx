@@ -71,7 +71,7 @@ function AllProducts(props) {
         
     
     function turnToCard(item, index){
-        return <ProductCard key={index} paintings = {item}/>
+        return <ProductCard onClick={()=>props.onClickOnCard(item.id)} key={index} paintings = {item}/>
 
     }
     
@@ -82,15 +82,17 @@ function AllProducts(props) {
            <h1>Gallery</h1>
        
        </Jumbotron>
-       <div>
-       <select name="" id="" value={selectValue} onChange={(e) =>updatePaintings(e.target.value)}>
+       <div style={{backgroundColor: '#f4f4f4'}}> 
+       <select  name="" id="" value={selectValue} onChange={(e) =>updatePaintings(e.target.value)}>
             <option value="1"  >Price(Low)</option> 
            <option value="2">Price(High)</option>
           <option value="3">Top Rated</option> 
        </select>
        </div>
        <div style={{backgroundImage: `url(${background})`, backgroundSize:'cover', minHeight:'500px'}} className="wrap-cards">
-        <CardColumns style={{ columnCount:'5'}}>{paintings2.map(turnToCard)}
+        <CardColumns style={{ columnCount:'5'}}>{paintings2.map((item, index)=>  {
+            
+            return <ProductCard onClickOnCard = {props.onClickOnCard} key={index} paintings = {item}/>})}
 </CardColumns>
 </div>
       </div>
