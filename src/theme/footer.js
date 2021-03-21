@@ -10,10 +10,10 @@ function Footer(){
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link href="/contactus">Contact Us</Nav.Link>
-        <Nav.Link href="https://www.facebook.com/" target="_blank"><FontAwesomeIcon icon={faFacebook} size="2x"/></Nav.Link>
-        <Nav.Link href="https://twitter.com/" target="_blank"><FontAwesomeIcon icon={faTwitterSquare}  size="2x"/></Nav.Link>
-        <Nav.Link href="https://www.instagram.com/" target="_blank"><FontAwesomeIcon icon={faInstagramSquare}  size="2x"/></Nav.Link>
+        <Nav.Link style={{paddingTop:"5px", paddingBottom:'0'}}  href="/contactus">Contact Us</Nav.Link>
+        <Nav.Link  style={{paddingTop:"5px", paddingBottom:'0'}}href="https://www.facebook.com/" target="_blank"><FontAwesomeIcon icon={faFacebook} size="2x"/></Nav.Link>
+        <Nav.Link  style={{paddingTop:"5px", paddingBottom:'0'}}href="https://twitter.com/" target="_blank"><FontAwesomeIcon icon={faTwitterSquare}  size="2x"/></Nav.Link>
+        <Nav.Link  style={{paddingTop:"5px", paddingBottom:'0'}}href="https://www.instagram.com/" target="_blank"><FontAwesomeIcon icon={faInstagramSquare}  size="2x"/></Nav.Link>
         
         
       </Nav>

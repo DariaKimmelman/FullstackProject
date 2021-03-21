@@ -13,7 +13,7 @@ function About(){
     
   </Jumbotron >
   <Container fluid style={{backgroundImage: `url(${background})`, backgroundSize: 'cover', justifyContent: 'center'}}> 
-    <Row style ={{paddingLeft: '0', marginLeft: '0', marginBottom: '15px', marginTop: '15px'}}>
+    <Row style ={{paddingLeft: '0', marginLeft: '0', marginBottom: '15px', marginTop: '0'}}>
         <Col xs={1}></Col>
         <Col style ={{paddingLeft: '0'}} >
         <img  style={{width:'100%'}}src={davinci} alt=""/></Col>

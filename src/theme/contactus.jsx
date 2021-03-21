@@ -4,10 +4,27 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdbreact'
 import background from './background.jpg'
 import {useForm} from 'react-hook-form'
 
+
 function ContactUs(){
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = data=>console.log(data);
-    return(
+  const onSubmit = (data,r)=>{
+    alert(`Thank you for your message`)
+   
+    const templateId = 'template_39qglk7';
+        const serviceID = 'project';
+        sendFeedback(serviceID, templateId, { from_name: data.name, subject: data.subject, message_html: data.message, reply_to: data.email })
+        r.target.reset()};
+        const sendFeedback = (serviceID, templateId, variables) => {
+          window.emailjs.send(
+              serviceID, templateId,
+              variables
+          ).then(res => {
+              console.log('Email successfully sent!')
+          })
+              .catch(err => console.error('There has been an error.  Here some thoughts on the error that occured:', err))
+      }
+    
+        return(
         <div style={{backgroundImage: `url(${background})`, backgroundSize:'cover'}}>
             <Jumbotron style={{backgroundColor:'#5B4E77', padding:'32px'}}>
             <h1 style={{color:'white'}}> Contact Us</h1>
@@ -15,7 +32,7 @@ function ContactUs(){
             <MDBContainer style={{backgroundColor:'inherit'}}>
   <MDBRow style={{maxWidth:'700px'}}>
     <MDBCol md="6" style={{marginLeft: '25%', backgroundColor:'white', paddingTop:'5px', paddingBottom:'5px', marginBottom:'15px'}}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form action ="mailto:fatimanomoretears@gmail.com" onSubmit={handleSubmit(onSubmit)}>
         <p className="h4 text-center mb-4">Write to us</p>
         <label htmlFor="defaultFormContactNameEx" className="grey-text">
           Your name

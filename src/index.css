@@ -19,5 +19,7 @@ code {
 }
 form span{
   font-size: 80%;
-  color:red
+  color:red;
+  margin-bottom: 10px;
+  display: inline-block;
 }

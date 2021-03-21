@@ -12,16 +12,16 @@ import {
 function AdminPage(props) {
 
     return <div style={{textAlign:'center', backgroundImage:`url(${background})`, backgroundSize:'cover',
-    marginTop:'20px'}}>
+    paddingTop:'20px'}}>
         <Row ><h3 style={{marginLeft:'45%',marginBottom:'20px'}}>Welcome Admin</h3></Row>
         <Row style={{minHeight:'500px'}}>
         <Col xs={1}></Col>
         <Col xs={2}>
         <Nav defaultActiveKey="/home" className="flex-column">
-    <Link href="/home">Orders</Link>
-    <Link href="/home">Clients</Link>
-    <Link href="/home">Products</Link>
-    
+    <Link  className='navItemsstyle'href="/home">Orders</Link>
+    {/* <Link className='navItemsstyle' href="/home">Clients</Link>
+    <Link  className='navItemsstyle'href="/home">Products</Link>
+     */}
     
    
   </Nav> </Col>

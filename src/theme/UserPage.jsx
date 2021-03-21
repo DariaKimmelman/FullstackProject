@@ -21,7 +21,7 @@ function UserPage(props) {
 
     return <div style={{textAlign:'center', backgroundImage:`url(${background})`, backgroundSize:'cover',
     marginBottom:'20px'}}>
-        <Row ><h3 style={{marginLeft:'45%', marginBottom:'20px'}}>Welcome user</h3></Row>
+        <Row ><h3 style={{marginLeft:'45%', marginBottom:'20px', marginTop:'20px'}}>Welcome user</h3></Row>
         <Row style={{minHeight:'500px'}}>
         <Col xs={1}></Col>
         <Col xs={2}>

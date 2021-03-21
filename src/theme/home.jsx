@@ -3,6 +3,7 @@ import background from './background.jpg'
 import{Jumbotron, CardDeck, Button, Row, Col, Modal} from 'react-bootstrap'
 import './home.css'
 import decor from './decor.jfif'
+import abstract from './abstract-watercolor-1.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImage } from '@fortawesome/free-solid-svg-icons'
 import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
@@ -14,11 +15,17 @@ import girl from './girlwithpearl.jpg'
 import night from './starrynight.jpg'
 import {LinkContainer} from 'react-router-bootstrap'
 import {useState} from 'react'
+import * as api from '../api'
 
 function MainPage(props){
-    let paintings = props.paintings;
+    const[ paintings, setPaintings] = useState([]);
 
 let [show, setShow] = useState(true);
+useEffect(async()=>{
+    const pics =  await api.getAll('products');
+    setPaintings(pics.data)
+
+},[])
 useEffect(()=>{
    
      if(sessionStorage.getItem('status')){
@@ -30,7 +37,9 @@ useEffect(()=>{
         return <MainCard onClickOnCard = {props.onClickOnCard} key={index} paintings={item}></MainCard>
     }
     function topRated(a, b) {
-        return a.name.rating - b.name.rating;
+        
+            return b.score / b.totalVotes - a.score / a.totalVotes ;
+            
         
     }
     let sorted;
@@ -82,12 +91,12 @@ useEffect(()=>{
             <Col xs="1">
             </Col>
         <Col>
-        <h1 >Welcome to E Gallery</h1>
+        <h1 >Original art for sale</h1>
         <LinkContainer to="/AllProducts"><Button style={{marginLeft: '150px',  marginTop:'30px', marginBottom: '10px'}} variant="danger">Shop now</Button></LinkContainer> 
         
         </Col>
         <Col xs="7">
-        <img style={{width: '100%', maxHeight: '150px', paddingTop:'0'}} src={decor} alt=""/>
+        <img style={{width: '100%', maxHeight: '150px', paddingTop:'0'}} src={abstract} alt=""/>
         
         </Col>
        

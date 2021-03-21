@@ -1,12 +1,23 @@
-import React from 'react'
+import {React, useState, useEffect} from 'react'
 import {Jumbotron, CardColumns} from 'react-bootstrap'
 import BlogCard from './BlogCard/BlogCard'
-import {useState} from 'react'
 import background from './background.jpg'
 import './BlogMain.css'
+import * as api from "../api"
 
 
 function BlogMain(props){
+
+  const [posts, setPosts] = useState([])
+
+  useEffect(async()=>{
+    const articles = await api.getAll('posts');
+    setPosts(articles.data);
+
+
+  }, [])
+
+   
    
   
 
@@ -25,7 +36,7 @@ function BlogMain(props){
       marginTop: '0'}}>
     <h1>Inspiration</h1>
   </Jumbotron>
-  <CardColumns className='postsContainer' style={{backgroundImage:`url(${background})`,columnCount:'auto', paddingLeft:'0', minHeight:'500px', marginBottom:'0'}} >{props.posts.map(toBlogCard).slice(90)}</CardColumns>
+  <CardColumns className='postsContainer' style={{backgroundImage:`url(${background})`,columnCount:'2', paddingLeft:'112px', minHeight:'500px', marginBottom:'0'}} >{posts.map(toBlogCard)}</CardColumns>
 
     </div>
 }

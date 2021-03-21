@@ -1,4 +1,5 @@
 .cardmargin{
     margin-right:15px;
-    max-width: 550px;
+    min-width: 600px;
+    
 }

@@ -7,6 +7,7 @@ import {useForm} from 'react-hook-form'
 import {faCcVisa, faCcAmex, faCcMastercard, faCcDiscover} from '@fortawesome/free-brands-svg-icons'
 
 function Checkout(props){
+  console.log(props.sum);
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = data=>console.log(data);
     return <Container fluid style={{backgroundImage: `URL(${background})`, backgroundSize:'cover',  minHeight:'480px'}}>
@@ -90,9 +91,9 @@ function Checkout(props){
                 <div className='ordersummary'>
                 <h5>Order Summary</h5>
                 <div>
-                <p>Artwork subtotal <span style={{float:'right'}}>0.0$</span></p>
-                <p>Shipping total <span style={{float:'right'}}>30$</span></p>
-                <p style={{fontWeight:'bolder'}}>Order total <span style={{float:'right'}}>{props.sum}$</span></p>
+                <p>Artwork subtotal <span style={{float:'right'}}>{props.sum.price}$</span></p>
+                <p>Shipping total <span style={{float:'right'}}>{props.sum.ship}$</span></p>
+                <p style={{fontWeight:'bolder'}}>Order total <span style={{float:'right'}}>{props.sum.total}$</span></p>
                 <Button form="checkoutForm" type="submit"style={{marginBottom: '10px'}}variant="danger" block>Confirm Purchase</Button>
                 <div className="icon-container">
               <FontAwesomeIcon icon={faCcVisa} style={{color:'navy'}}/>

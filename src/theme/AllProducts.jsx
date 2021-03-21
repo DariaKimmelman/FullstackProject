@@ -7,14 +7,71 @@ import ProductCard from './ProductCard/ProductCard.jsx'
 import {CardColumns, Row, Jumbotron} from 'react-bootstrap'
 import background from './background.jpg'
 import './AllProducts.css'
+import axios from 'axios'
+import * as api from "../api.js"
 
 
 
 function AllProducts(props) {
-    const [selectValue, setSelectValue] = useState('2')
-    let paintings =props.paintings;
     console.log(props.paintings);
-    const [paintings2, setPaintings2] = useState(paintings);
+    const [selectValue, setSelectValue] = useState('2')
+    //let paintings =props.paintings;
+    const [paintings, setPaintings] = useState([]);
+    const [paintings2, setPaintings2] = useState([]);
+    const subjects = [ 'People', 'Landscapes', 'Floral', 'Animals', 'Still Life' ];
+   
+    useEffect(async()=>{
+        if(!props.paintings){
+        const art = await api.getAll('products');
+        
+        
+        setPaintings(art.data);
+        setPaintings2(art.data.sort(highToLow))}
+        else{
+            let newpaintings;
+            if (subjects.includes(props.paintings)) {
+                newpaintings = await api.getByCategory('products', props.paintings)
+                setPaintings([ ...newpaintings.data ].sort(highToLow));
+            setPaintings2([ ...newpaintings.data].sort(highToLow));
+                }
+            if (typeof props.paintings == 'number' && props.paintings <= 1000) {
+                newpaintings =  await api.getAll('products')
+                setPaintings([ ...newpaintings.data].filter(lessThan1000))
+            setPaintings2([ ...newpaintings.data].filter(lessThan1000).sort(highToLow))
+            }
+            if (typeof props.paintings == 'number' && props.paintings > 1000) {
+                newpaintings =  await api.getAll('products')
+                setPaintings([ ...newpaintings.data].filter(moreThan1000 ));
+            setPaintings2([ ...newpaintings.data].filter(moreThan1000 ).sort(highToLow));
+            }
+            if (!subjects.includes(props.paintings) && typeof props.paintings != 'number') {
+                newpaintings =  await api.getAll('products')
+                    setPaintings([ ...newpaintings.data].filter(search))
+                    setPaintings2([ ...newpaintings.data].filter(search).sort(highToLow))
+            }
+        }
+    },[])
+            
+            
+            
+           
+            
+        
+    
+                    
+
+    
+         
+        
+
+
+    
+     let category = "Gallery"
+     if(paintings.length > 0 && paintings.every((val)=>{ return val.subject === paintings[0].subject})){
+         category = paintings[0].subject;
+
+     }
+   
     useEffect(()=>{
         
         switch(selectValue){
@@ -49,9 +106,25 @@ function AllProducts(props) {
         return b.price - a.price;
     }
     function topRated(a, b) {
-        return b.rating - a.rating;
+        return b.score / b.totalVotes - a.score / a.totalVotes ;
         
     }
+    function lessThan1000(element){
+        return element.price <= props.paintings;
+    }
+
+    function moreThan1000(element){
+        return element.price > props.paintings;
+    }
+    function search(item){
+        return (
+            item.name.toLowerCase().includes(props.paintings.toLowerCase()) ||
+            item.author.toLowerCase().includes(props.paintings.toLowerCase()) ||
+            item.medium.toLowerCase().includes(props.paintings.toLowerCase()) ||
+            item.price == Number(props.paintings)
+        ); 
+}
+
     
        
  
@@ -78,8 +151,8 @@ function AllProducts(props) {
     
     
     return <div > 
-       <Jumbotron className='pink' style={{marginBottom:'0', height:'150px', paddingTop:'30px'}}>
-           <h1>Gallery</h1>
+       <Jumbotron className='pink' style={{marginBottom:'0', height:'150px', paddingTop:'50px', paddingBottom:'50px'}}>
+           <h1>{category}</h1>
        
        </Jumbotron>
        <div style={{backgroundColor: '#f4f4f4'}}> 

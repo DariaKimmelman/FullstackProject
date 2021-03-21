@@ -51,7 +51,7 @@ function ChangeDetails(props) {
       <MDBContainer style={{textAlign:"center",backgroundColor:'#ebe8e5'}}>
   <MDBRow>
     <MDBCol md="11">
-      <form onClick={handleSubmit2(onSubmit2)}>
+      <form style={{marginLeft:'10%'}} onClick={handleSubmit2(onSubmit2)}>
         <p className="h4 text-center mb-4">Change Password</p>
         <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
           Current Password
@@ -69,7 +69,7 @@ function ChangeDetails(props) {
           validate: value =>
             value === watch2('newpassword')|| "The passwords do not match"
         })}/>
-        {errors2.confirmpassword && <p>{errors2.confirmpassword.message}</p>}
+        {errors2.confirmpassword && <span>{errors2.confirmpassword.message}</span>}
         <div className="text-center mt-4">
           <MDBBtn  className="login" color="danger" type="submit" block>Change Password</MDBBtn>
         </div>
