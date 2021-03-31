@@ -16,20 +16,24 @@ function About(){
     <Row style ={{paddingLeft: '0', marginLeft: '0', marginBottom: '15px', marginTop: '0'}}>
         <Col xs={1}></Col>
         <Col style ={{paddingLeft: '0'}} >
-        <img  style={{width:'100%'}}src={davinci} alt=""/></Col>
+        <img  style={{width:'100%'}}src={`http://localhost:3001/images/dad.jpg`} alt=""/></Col>
         <Col >
-        <h6 >Leonardo Davinci</h6>
-        <p className='left' style={{width: '520px'}}>Leonardo da Vinci (English: /ˌliːəˈnɑːrdoʊ də ˈvɪntʃi, ˌliːoʊˈ-, ˌleɪoʊˈ-/;[a] 14/15 April 1452[b] – 2 May 1519)[4] was an Italian polymath of the High Renaissance who is widely considered one of the most diversely talented individuals ever to have lived.[5] While his fame initially rested on his achievements as a painter, he also became known for his notebooks, in which he made drawings and notes on science and invention; these involve a variety of subjects including anatomy, astronomy, botany, cartography, painting, and palaeontology. Leonardo's genius epitomized the Renaissance humanist idea,[6] and his collective works compose a contribution to later generations of artists rivalled only by that of his contemporary Michelangelo.[7]</p>
+        <h6 >Yefim Eftimiopulos</h6>
+        <p className='left' style={{width: '520px'}}>Yefim was born in Uzbekistan in 1962. Has technical education. Was interested in art since early childhood. Began painting at age of 33. Was inspired by metaphysical works of Giorgio Chirico and Rene Magritte. The artist does not consider his works to be strictly artistic, but only a reflection of inner feelings. He considers the main thing in the visual arts: theme, plot and composition.
+Therefore, his paintings will be of interest to those viewers who have a penchant for thinking and unraveling obscure symbols.
+
+</p>
         </Col>
     </Row>
     <Row >
         <Col xs={1}></Col>
         <Col >
-        <h6 >Vincent Van Gogh</h6>
-        <p className='left'style={{width: '520px'}}>Vincent Willem van Gogh (Dutch: [ˈvɪnsənt ˈʋɪləm vɑŋ ˈɣɔx] (About this soundlisten);[note 1] 30 March 1853 – 29 July 1890) was a Dutch post-impressionist painter who posthumously became one of the most famous and influential figures in the history of Western art. In a decade, he created about 2,100 artworks, including around 860 oil paintings, most of which date from the last two years of his life. They include landscapes, still lifes, portraits and self-portraits, and are characterised by bold colours and dramatic, impulsive and expressive brushwork that contributed to the foundations of modern art. He was not commercially successful, and his suicide at 37 came after years of mental illness, depression and poverty.</p>
+        <h6 >Victoria Fertman</h6>
+        <p className='left'style={{width: '520px'}}>Victoria was born in Uzbekistan in 1964. She has a university degree in the humanities. During her student years she studied in a theater studio, where she met her future husband. Since childhood, she drew a lot.
+She began to paint seriously at the age of 50, with a preference for watercolors and acrylics. Diversity of hobbies affects the choice of subjects for her work.</p>
         </Col>
         <Col >
-        <img style={{width:'100%', marginBottom:'10px'}} src={vangogh} alt=""/>
+        <img style={{width:'100%', marginBottom:'10px'}} src={`http://localhost:3001/images/mom.jpg`} alt=""/>
         </Col>
     </Row>
   </Container>

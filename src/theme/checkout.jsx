@@ -5,11 +5,21 @@ import './checkout.css'
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {useForm} from 'react-hook-form'
 import {faCcVisa, faCcAmex, faCcMastercard, faCcDiscover} from '@fortawesome/free-brands-svg-icons'
+import * as api from '../api'
 
 function Checkout(props){
   console.log(props.sum);
+  console.log(props.cart);
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = data=>console.log(data);
+  const onSubmit = async (data, r)=>{try {
+    const res = await api.postData('orders',{time: new Date().toString(), total: props.sum.total, items: props.cart,
+   customer: {fname: data.fullName, email:data.email, address: `${data.address}, ${data.city}, ${data.state}, ${data.zip}` } });
+    console.log(res);
+    r.target.reset();
+  }
+  catch(err){
+    console.log(err);
+  }};
     return <Container fluid style={{backgroundImage: `URL(${background})`, backgroundSize:'cover',  minHeight:'480px'}}>
         <Row style={{textAlign:'center'}}>
         <h3 style={{paddingLeft:'45%', paddingBottom:'20px'}}>Order Page</h3>
@@ -40,7 +50,7 @@ function Checkout(props){
 
             <Row className="row">
               <Col className="col-50">
-                <label for="state">State</label>
+                <label for="state">Country</label>
                 <input type="text"   className="input" id="state" name="state" ref={register({required:true})} placeholder="NY"/>
                 {errors.state && <span>This field is required</span>}
               </Col>

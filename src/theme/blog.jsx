@@ -1,13 +1,15 @@
 import {React, useState, useEffect} from 'react'
+import {useParams} from 'react-router-dom'
 import {Jumbotron} from 'react-bootstrap'
 import example from './example.jfif'
 import {Container, Row, Col} from 'react-bootstrap'
 import gradient from './gradient.jfif'
 import * as api from '../api'
 function Blog(props){
+   const {id} = useParams()
    const [post, setPost] = useState({})
    useEffect(async()=>{
-		const article = await api.getById('posts', props.posts);
+		const article = await api.getById('posts', id);
 		setPost(article.data[0])
 		console.log(article.data);
 

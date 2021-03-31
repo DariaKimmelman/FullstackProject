@@ -9,10 +9,12 @@ import background from './background.jpg'
 import './AllProducts.css'
 import axios from 'axios'
 import * as api from "../api.js"
+import { LinkContainer } from 'react-router-bootstrap'
 
 
 
 function AllProducts(props) {
+    console.log(props.onAddProd)
     console.log(props.paintings);
     const [selectValue, setSelectValue] = useState('2')
     //let paintings =props.paintings;
@@ -141,10 +143,12 @@ function AllProducts(props) {
     
 
 
-        
+    const navigateToProduct = ()=>{
+
+    }
     
     function turnToCard(item, index){
-        return <ProductCard onClick={()=>props.onClickOnCard(item.id)} key={index} paintings = {item}/>
+        return <ProductCard onClickOnCard={props.onClickOnCard} onAddProd = {props.onAddProd}  key={index} paintings = {item}     />
 
     }
     
@@ -165,7 +169,9 @@ function AllProducts(props) {
        <div style={{backgroundImage: `url(${background})`, backgroundSize:'cover', minHeight:'500px'}} className="wrap-cards">
         <CardColumns style={{ columnCount:'5'}}>{paintings2.map((item, index)=>  {
             
-            return <ProductCard onClickOnCard = {props.onClickOnCard} key={index} paintings = {item}/>})}
+            return  <ProductCard onAddProd= {props.onAddProd} onClickOnCard = {() =>navigateToProduct(item.id)} key={index} paintings = {item}/>
+        
+        })}
 </CardColumns>
 </div>
       </div>

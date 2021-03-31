@@ -14,7 +14,7 @@ function ProductCard(props){
     let devUrl = `http://localhost:3001/images/${props.paintings.pic}`
     if(props.paintings.instock){
         price = <span style={{fontWeight: 'bolder'}}>{props.paintings.price}$</span>
-        cart = <span className = 'right'><FontAwesomeIcon  icon={faShoppingCart}/></span>
+        cart = <span   onClick = {()=>props.onAddProd(props.paintings)} className = 'right'><FontAwesomeIcon icon={faShoppingCart}/></span>
         
 
     }
@@ -24,7 +24,7 @@ function ProductCard(props){
         
     }
    return <Card className="card padding" >
-       <LinkContainer onClick={()=>props.onClickOnCard(props.paintings.id)} to='/ProductPage' >
+       <LinkContainer onClick={()=>props.onClickOnCard(props.paintings.id)} to={`/ProductPage/${props.paintings.id}`} >
    <Card.Img  variant="top" src={devUrl}/>
    </LinkContainer>
    <Card.Body >

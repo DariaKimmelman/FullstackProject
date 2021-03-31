@@ -24,101 +24,13 @@ import BlogMain from './theme/BlogMain';
 import Forgotten from './theme/forgotten';
 import UserPage from './theme/UserPage';
 import AdminPage from './theme/AdminPage';
+import Store, { StoreContext } from './theme/global';
+import {React, useContext} from 'react'
 
 function App() {
-	let paintings = [
-		{
-			id: 1,
-			pic: 'public\images\boy.jpg',
-			name: 'Mona Lisa',
-			year: '1516',
-			author: 'Leonardo Da Vinci',
-			price: 10000000,
-			medium: 'Oil on poplar paper',
-			size: '77cm * 53 cm',
-			subject: 'People',
-			rating: 5,
-			instock: false
-		},
-		{
-			id: 2,
-			pic: girl,
-			name: 'Girl With a Pearl Earring',
-			year: '1665',
-			author: 'Johannes Vermeer',
-			price: 80000,
-			medium: 'Oil on canvas',
-			size: '44.5 cm × 39 cm ',
-			subject: 'People',
-			rating: 4,
-			instock: true
-		},
-		{
-			id: 3,
-			pic: girl,
-			name: 'Girl With a Pearl Earring',
-			year: '1665',
-			author: 'Johannes Vermeer',
-			price: 80000,
-			medium: 'Oil on canvas',
-			size: '44.5 cm × 39 cm ',
-			subject: 'People',
-			rating: 4,
-			instock: true
-		},
-		{
-			id: 4,
-			pic: girl,
-			name: 'Girl With a Pearl Earring',
-			year: '1665',
-			author: 'Johannes Vermeer',
-			price: 80000,
-			medium: 'Oil on canvas',
-			size: '44.5 cm × 39 cm ',
-			subject: 'People',
-			rating: 4,
-			instock: true
-		},
-		{
-			id: 5,
-			pic: girl,
-			name: 'Girl With a Pearl Earring',
-			year: '1665',
-			author: 'Johannes Vermeer',
-			price: 80000,
-			medium: 'Oil on canvas',
-			size: '44.5 cm × 39 cm ',
-			subject: 'People',
-			rating: 4,
-			instock: true
-		},
-		{
-			id: 6,
-			pic: girl,
-			name: 'Girl With a Pearl Earring',
-			year: '1665',
-			author: 'Johannes Vermeer',
-			price: 80000,
-			medium: 'Oil on canvas',
-			size: '44.5 cm × 39 cm ',
-			subject: 'People',
-			rating: 4,
-			instock: true
-		},
-		{
-			id: 7,
-			pic: night,
-			name: 'Starry Night',
-			year: '1889',
-			author: 'Vincent van Gogh',
-			price: 20000,
-			medium: 'Oil on canvas',
-			size: '73.7 cm × 92.1 cm ',
-			subject: 'Landscapes',
-			rating: 3,
-			instock: true
-		}
-	];
+	const [store, updateStore] = useContext(StoreContext);
+	
+	
 	const painting = {
 		pic: night,
 		name: 'Starry Night',
@@ -134,6 +46,7 @@ function App() {
 
 	const [ post, setPost ] = useState();
 	const [ checkout, setCheckout ] = useState();
+	const [cart, setCart] = useState([])
 
 	async function loadPosts() {
 		const response = await fetch('https://jsonplaceholder.typicode.com/posts/');
@@ -175,7 +88,7 @@ function App() {
 		}
 	];
 	
-	const [ pictures, setPictures ] = useState(paintings);
+	
 	const [ picture, setPicture ] = useState('');
 	const [id, setId] = useState(0);
 	const [postid, setPostId] = useState(0);
@@ -195,6 +108,22 @@ function App() {
 		setPostId(id);
 	}
 
+
+    function onAddProd2(prod){
+	
+		if(prod){
+		if(store.cart.find((e) => {return e.id === prod.id}) === undefined && prod.instock){
+			
+			store.cart.push(prod)
+		
+			updateStore({...store})
+			console.log(store.cart);
+			
+		}
+	}
+	
+
+	}
 	return (
 		<div className="App" style={{}}>
 			<BrowserRouter>
@@ -204,16 +133,17 @@ function App() {
 						exact
 						path="/"
 						exact
-						component={() => <MainPage onClickOnCard={goTo} paintings={paintings} />}
+						component={() => <MainPage onClickOnCard={goTo}  />}
 					/>
 					<Route
 						exact
 						path="/AllProducts"
-						component={() => <AllProducts onClickOnCard={goTo} paintings={picture} />}
+						component={() => <AllProducts onClickOnCard={goTo} onAddProd={onAddProd2} paintings={picture}
+						 />}
 					/>
 					<Route exact path="/about" component={About} />
 					<Route exact path="/contactus" component={ContactUs} />
-					<Route exact path="/Blog" component={() => <Blog posts={postid} />} />
+					<Route exact path="/Blog/:id" component={() => <Blog posts={postid} />} />
 					<Route exact path="/Login" component={Login} />
 					<Route exact path="/Signin" component={SignIn} />
 					<Route
@@ -225,12 +155,13 @@ function App() {
 								passPrice={(price) => {
 									setCheckout(price);
 								}}
-								paintings={paintings}
+								passCart = {(cart)=>{setCart(cart)}}
+								paintings={store.cart}
 							/>
 						)}
 					/>
-					<Route exact path="/ProductPage" component={() => <Product painting={id} />} />
-					<Route exact path="/checkout" component={() => <Checkout sum={checkout} />} />
+					<Route exact path="/ProductPage/:id" component={() => <Product onAddProd={onAddProd2} />} />
+					<Route exact path="/checkout" component={() => <Checkout sum={checkout} cart={cart} />} />
 					<Route
 						exact
 						path="/BlogMain"
@@ -241,7 +172,7 @@ function App() {
 					<Route
 						exact
 						path="/UserPage"
-						component={() => <UserPage onClickOnCard={goTo} paintings={paintings} />}
+						component={() => <UserPage onClickOnCard={goTo}  />}
 					/>
 				</Switch>
 				<Footer />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Navbar, Nav, Form, FormControl, NavDropdown, Button, Container, Modal} from 'react-bootstrap';
 import ReactDOM from 'react-dom'
 import Row from 'react-bootstrap/Row'
@@ -15,9 +15,11 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 import {useForm} from 'react-hook-form'
 import logo2 from './logo2.png'
 import background2 from './wave.png'
+import {LinkContainer} from 'react-router-bootstrap'
+import {StoreContext} from './global'
 
 function Header(props){
-
+  const [store,updateStore] = useContext(StoreContext);
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = data=>console.log(data);
   const { register:register2, handleSubmit:handleSubmit2, watch2, errors:errors2 } = useForm();
@@ -37,12 +39,12 @@ function Header(props){
   const handleShow2 = () => setShow2(true);
   const [search, setSearch] = useState('');
     return <Navbar bg="light" expand="lg" sticky="top">
-    <Navbar.Brand href="/"><img style={{imageRendering:'pixelated', width:'65px', height:'55px', paddingTop:'5px'}} src= {logo2}  alt="logo" height="80" width="50"/></Navbar.Brand>
+    <LinkContainer to="/"><Navbar.Brand ><img style={{imageRendering:'pixelated', width:'65px', height:'55px', paddingTop:'5px'}} src= {logo2}  alt="logo" height="80" width="50"/></Navbar.Brand></LinkContainer>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link style={{fontSize:'1rem'}} href="/UserPage">About</Nav.Link>
-        <Nav.Link style={{fontSize:'1rem'}} href="/BlogMain">Blog</Nav.Link>
+        <LinkContainer  to="/about"><Nav.Link style={{fontSize:'1rem'}}>About</Nav.Link></LinkContainer>
+        <LinkContainer to="/BlogMain" ><Nav.Link style={{fontSize:'1rem'}} >Blog</Nav.Link></LinkContainer>
         <NavDropdown style={{fontSize:'1rem'}}title="Catalog" id="basic-nav-dropdown" >
         <Container style={{width: '500px'}}>
           <Row >
@@ -68,7 +70,7 @@ function Header(props){
         </NavDropdown>
         
       </Nav>
-      <Form inline>
+      <Form inline onSubmit={(e)=>{e.preventDefault()}}>
         <FormControl type="text" onChange = {(e)=>{setSearch(e.target.value)}} placeholder="Search" className="mr-sm-2" />
         <Link to='/AllProducts'><Button onClick={()=>{props.onFilterChange(search)}} style={{border: 'none'}} variant="outline-dark">Search</Button></Link>
       </Form>
@@ -142,7 +144,7 @@ function Header(props){
   </MDBRow>
 </MDBContainer>
       </Modal>
-        <Nav.Link href="/ShoppingCart"><FontAwesomeIcon icon={faShoppingCart} /></Nav.Link>
+        <LinkContainer to= { "/ShoppingCart"}><Nav.Link><FontAwesomeIcon icon={faShoppingCart}   /><span className='badge badge-warning' id='lblCartCount'> {store.cart.length} </span></Nav.Link></LinkContainer>
     </Navbar.Collapse>
     
   </Navbar>

@@ -30,8 +30,8 @@ function ContactUs(){
             <h1 style={{color:'white'}}> Contact Us</h1>
             </Jumbotron>
             <MDBContainer style={{backgroundColor:'inherit'}}>
-  <MDBRow style={{maxWidth:'700px'}}>
-    <MDBCol md="6" style={{marginLeft: '25%', backgroundColor:'white', paddingTop:'5px', paddingBottom:'5px', marginBottom:'15px'}}>
+  <MDBRow style={{}}>
+    <MDBCol md="6" style={{ marginLeft: '25%',maxWidth: "55%", flex: "1 1 auto", backgroundColor:'white', paddingTop:'5px', paddingBottom:'5px', marginBottom:'15px'}}>
       <form action ="mailto:fatimanomoretears@gmail.com" onSubmit={handleSubmit(onSubmit)}>
         <p className="h4 text-center mb-4">Write to us</p>
         <label htmlFor="defaultFormContactNameEx" className="grey-text">

@@ -95,7 +95,7 @@ useEffect(()=>{
         <LinkContainer to="/AllProducts"><Button style={{marginLeft: '150px',  marginTop:'30px', marginBottom: '10px'}} variant="danger">Shop now</Button></LinkContainer> 
         
         </Col>
-        <Col xs="7">
+        <Col xs="7" style = {{maxWidth: '50%', flex: '0 0 50%'}}>
         <img style={{width: '100%', maxHeight: '150px', paddingTop:'0'}} src={abstract} alt=""/>
         
         </Col>
