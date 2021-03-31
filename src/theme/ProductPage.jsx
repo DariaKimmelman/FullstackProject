@@ -4,12 +4,15 @@ import './ProductPage.css';
 import back from './background.jpg';
 import * as api from '../api'
 import axios from 'axios'
+import {useParams} from 'react-router-dom';
 
 function Product(props) {
 	const [painting, setPaintings] = useState("")
 	console.log(props.painting)
+	const {id} = useParams();
 	useEffect(async()=>{
-		const painting = await api.getById('products', props.painting);
+		console.log(id);
+		const painting = await api.getById('products', id);
 		setPaintings(painting.data[0])
 		console.log(painting.data);
 
@@ -66,7 +69,7 @@ function Product(props) {
 						</ul>
 						<p>{stars} </p>
 					</div>
-					<Button variant="danger" block>
+					<Button variant="danger" block onClick={() => props.onAddProd(painting)}>
 						Add to Cart
 					</Button>
 					<div style={{ paddingBottom: '50%' }}>
