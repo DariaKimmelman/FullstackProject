@@ -1,4 +1,4 @@
-import React from 'react'
+import {useContext} from 'react'
 import {Container, Row, Col, Button} from 'react-bootstrap'
 import background from './background.jpg';
 import './checkout.css'
@@ -6,14 +6,16 @@ import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {useForm} from 'react-hook-form'
 import {faCcVisa, faCcAmex, faCcMastercard, faCcDiscover} from '@fortawesome/free-brands-svg-icons'
 import * as api from '../api'
+import {StoreContext} from './global';
 
 function Checkout(props){
+  const[store, updateStore] = useContext(StoreContext);
   console.log(props.sum);
   console.log(props.cart);
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = async (data, r)=>{try {
     const res = await api.postData('orders',{time: new Date().toString(), total: props.sum.total, items: props.cart,
-   customer: {fname: data.fullName, email:data.email, address: `${data.address}, ${data.city}, ${data.state}, ${data.zip}` } });
+   customer: {fname: data.fullName, email:data.email, address: `${data.address}, ${data.city}, ${data.state}, ${data.zip}` }, userId: store.user._id? store.user._id: 'user' });
     console.log(res);
     r.target.reset();
   }

@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import * as api from '../api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons'
 import logo from './logo.png';
 import './header.css'
 import { propTypes } from 'react-bootstrap/esm/Image';
@@ -19,12 +19,25 @@ import {LinkContainer} from 'react-router-bootstrap'
 import {StoreContext} from './global'
 
 function Header(props){
+  const[isError, setError] = useState(false);
   const [store,updateStore] = useContext(StoreContext);
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = data=>console.log(data);
+  const onSubmit =  async (user)=>{try {
+    const {data} = await api.login('users',user);
+
+    
+    setShow(false)
+    updateStore({...store, token:data.token, user:data.user})
+    
+  }
+  catch(err){
+    console.log(err);
+    setError(true)
+  }};
   const { register:register2, handleSubmit:handleSubmit2, watch2, errors:errors2 } = useForm();
   const onSubmit2 = async (data)=>{try {
     const res = await api.postData('users',data);
+    console.log(data)
     setShow2(false)
     console.log(res);
   }
@@ -43,8 +56,8 @@ function Header(props){
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <LinkContainer  to="/about"><Nav.Link style={{fontSize:'1rem'}}>About</Nav.Link></LinkContainer>
-        <LinkContainer to="/BlogMain" ><Nav.Link style={{fontSize:'1rem'}} >Blog</Nav.Link></LinkContainer>
+        <LinkContainer style={{fontSize:'1rem'}} to="/about"><Nav.Link >About</Nav.Link></LinkContainer>
+        <LinkContainer style={{fontSize:'1rem'}} to="/BlogMain" ><Nav.Link  >Blog</Nav.Link></LinkContainer>
         <NavDropdown style={{fontSize:'1rem'}}title="Catalog" id="basic-nav-dropdown" >
         <Container style={{width: '500px'}}>
           <Row >
@@ -74,7 +87,10 @@ function Header(props){
         <FormControl type="text" onChange = {(e)=>{setSearch(e.target.value)}} placeholder="Search" className="mr-sm-2" />
         <Link to='/AllProducts'><Button onClick={()=>{props.onFilterChange(search)}} style={{border: 'none'}} variant="outline-dark">Search</Button></Link>
       </Form>
+      {!store.token?<div>
+      <Button style={{border: 'none'}} variant="outline-dark" onClick={handleShow2} >Sign In</Button>
       <Button style={{border: 'none'}} variant="outline-dark" onClick={handleShow} >Login</Button>
+      </div>: <LinkContainer style={{fontSize:'1rem'}} to="/UserPage"><Nav.Link ><FontAwesomeIcon icon={faUser}   /></Nav.Link></LinkContainer> }
       <Modal show={show} onHide={handleClose}  >
       <Modal.Header style={{border:'none',backgroundColor:'#ebe8e5', padding:'10px'}}closeButton/>
       <MDBContainer style={{textAlign:"center", backgroundColor:'#ebe8e5'}}>
@@ -82,6 +98,8 @@ function Header(props){
     <MDBCol md="11">
       <form  style = {{marginLeft:'10%'}} onSubmit={handleSubmit(onSubmit)}>
         <p className="h4 text-center mb-4">Login to your account</p>
+        {isError &&<span>Email or password is wrong</span>}
+       
         <label htmlFor="defaultFormLoginEmailEx" className="grey-text" >
           Your email
         </label>
@@ -102,7 +120,7 @@ function Header(props){
   </MDBRow>
 </MDBContainer>
       </Modal>
-      <Button style={{border: 'none'}} variant="outline-dark" onClick={handleShow2} >Sign In</Button>
+      
       <Modal show={show2} onHide={handleClose2} >
       <Modal.Header style={{border:'none',backgroundColor:'#ebe8e5', padding:'10px'}}closeButton/>
       <MDBContainer style={{textAlign:"center",backgroundColor:'#ebe8e5'}}>

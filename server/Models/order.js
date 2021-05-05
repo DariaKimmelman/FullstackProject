@@ -5,7 +5,8 @@ const orderSchema = new Schema({
 	time: String,
 	total: Number,
 	items: [{name: String, price: Number}],
-    customer: [{fname: String, email: String, address:String}]
+    customer: [{fname: String, email: String, address:String}],
+	userId: String
 	
 });
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 const storeObject = {
-    userName: 'user',
+    token: '',
+    user:{},
     cart: []
 }
 export const StoreContext = React.createContext(storeObject)

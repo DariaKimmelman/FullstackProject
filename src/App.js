@@ -133,7 +133,7 @@ function App() {
 						exact
 						path="/"
 						exact
-						component={() => <MainPage onClickOnCard={goTo}  />}
+						component={() => <MainPage onClickOnCard={goTo} onFilterChange ={handleFilterChange}  />}
 					/>
 					<Route
 						exact

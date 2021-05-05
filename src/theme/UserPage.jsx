@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useState, useContext} from 'react'
 import {Nav, Row, Col} from 'react-bootstrap'
 import {
     BrowserRouter,
@@ -11,8 +11,10 @@ import {
   import ChangeDetails from './ChangeDetails/ChangeDetails.jsx'
   import Favourites from './Favourites/favourites.jsx'
   import OrdersHistory from './OrdersHistory/OrdersHistory.jsx'
+  import Store, {StoreContext} from './global'
 
 function UserPage(props) {
+  const [store, updateStore] = useContext(StoreContext)
   const customerorders =[{id:1, name: 'wawa', price:100, shipping:'Tel Aviv', date: new Date() },
   {id:2, name: 'nana', price:200, shipping:'Tokyo', date: new Date() },
   {id:3, name: 'gaga', price:300, shipping:'Teheran', date: new Date() },
@@ -21,7 +23,7 @@ function UserPage(props) {
 
     return <div style={{textAlign:'center', backgroundImage:`url(${background})`, backgroundSize:'cover',
     marginBottom:'20px'}}>
-        <Row ><h3 style={{marginLeft:'45%', marginBottom:'20px', marginTop:'20px'}}>Welcome user</h3></Row>
+        <Row ><h3 style={{marginLeft:'45%', marginBottom:'20px', marginTop:'20px'}}>Welcome {store.user.fname}</h3></Row>
         <Row style={{minHeight:'500px'}}>
         <Col xs={1}></Col>
         <Col xs={2}>

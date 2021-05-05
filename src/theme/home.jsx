@@ -92,7 +92,7 @@ useEffect(()=>{
             </Col>
         <Col>
         <h1 >Original art for sale</h1>
-        <LinkContainer to="/AllProducts"><Button style={{marginLeft: '150px',  marginTop:'30px', marginBottom: '10px'}} variant="danger">Shop now</Button></LinkContainer> 
+        <LinkContainer to="/AllProducts"><Button onClick = {()=>props.onFilterChange('')} style={{marginLeft: '150px',  marginTop:'30px', marginBottom: '10px'}} variant="danger">Shop now</Button></LinkContainer> 
         
         </Col>
         <Col xs="7" style = {{maxWidth: '50%', flex: '0 0 50%'}}>

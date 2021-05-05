@@ -1,7 +1,9 @@
-import React from 'react'
+import {useContext} from 'react'
 import {Table} from 'react-bootstrap'
+import {StoreContext} from '../global'
 
 function OrdersHistory(props) {
+     const [store, updateStore] = useContext(StoreContext)
      function toTableRow(item, index){
         return    <tr key={index}>
             <td>{item.id}</td>
